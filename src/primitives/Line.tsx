@@ -1,11 +1,8 @@
 // LineSegment.tsx
 import * as React from "react";
 import * as THREE from "three";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import { EPS } from "../utils/math";
 import { DEFAULT_COLOR } from "../utils/styles";
-import { propTypeNumberArrayOfLength } from "../utils/util";
 
 const { useState, useEffect, useMemo, memo } = React;
 export interface LineProps {
@@ -19,7 +16,7 @@ export interface LineProps {
   transparent?: boolean;
   groupMember?: boolean;
   castShadow?: boolean;
-  geometry?: THREE.Geometry;
+  geometry?: THREE.BufferGeometry;
   material?: THREE.Material;
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   children?: any;
@@ -30,7 +27,7 @@ export interface LineProps {
  *
  * Unlike most 3D objects that are meshes underneath, Line is another
  * type of object. Line is a wrapper component of
- * react-three-fiber/three.js's Line.
+ * @react-three/fiber/three.js's Line.
  *
  * In Standard View, Lines may be defined with a start and end position.
  * A line may also have more than just the end points. If an array of
@@ -92,7 +89,10 @@ const Line: React.FunctionComponent<LineProps> = function Line({
       return <primitive object={geometry} />;
     }
 
-    return <geometry attach="geometry" vertices={vertices} />;
+    return (
+      // @ts-ignore: Property 'geometry' does not exist on type 'JSX.IntrinsicElements'
+      <geometry attach="geometry" vertices={vertices} />
+    );
   });
   GeometryComponent.displayName = "GeometryComponent";
 
@@ -109,9 +109,10 @@ const Line: React.FunctionComponent<LineProps> = function Line({
     [material, _color, transparent, opacity]
   );
 
-  return (
-    // @ts-ignore:TS2322 line type clash
-    <line
+      return (
+      // @ts-ignore:TS2322 line type clash
+      // @ts-ignore: Type '{ children: any[]; groupMember?: boolean | undefined; onPointerOver: () => void; onPointerOut: () => void; castShadow: boolean; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'
+      <line
       onPointerOver={function setHover(): void {
         if (hoverable && hoverColor != null) {
           setColor(hoverColor);
@@ -122,6 +123,7 @@ const Line: React.FunctionComponent<LineProps> = function Line({
           setColor(color);
         }
       }}
+      // @ts-ignore: Property 'castShadow' does not exist on type 'SVGLineElementAttributes<SVGLineElement>'
       castShadow={castShadow}
       {...otherProps}
     >
@@ -131,28 +133,6 @@ const Line: React.FunctionComponent<LineProps> = function Line({
     </line>
   );
 };
-
-// -----  PropTypes   ----- //
-/* eslint-disable react/forbid-prop-types */
-Line.propTypes = exact({
-  start: propTypeNumberArrayOfLength(3),
-  end: propTypeNumberArrayOfLength(3),
-  points: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
-  color: PropTypes.string,
-  hoverColor: PropTypes.string,
-  hoverable: PropTypes.bool,
-  opacity: PropTypes.number,
-  transparent: PropTypes.bool,
-  groupMember: PropTypes.bool,
-  castShadow: PropTypes.bool,
-  geometry: PropTypes.object, // THREE.Geometry
-  material: PropTypes.object, // THREE.Material
-  children: PropTypes.any
-});
-/* eslint-enable react/forbid-prop-types */
-/* eslint-disable react/forbid-foreign-prop-types */
-export const LinePropTypes = Line.propTypes;
-/* eslint-enable react/forbid-foreign-prop-types */
 
 const LineMemo = memo(Line);
 LineMemo.displayName = "Line";
@@ -177,6 +157,7 @@ const MaterialComponent = memo(function MaterialComponent({
   }
 
   return (
+    // @ts-ignore: Property 'lineBasicMaterial' does not exist on type 'JSX.IntrinsicElements'
     <lineBasicMaterial
       attach="material"
       color={color}

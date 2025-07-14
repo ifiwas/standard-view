@@ -1,10 +1,9 @@
 // PCD.tsx
 import * as React from "react";
+import * as THREE from "three";
 import { PCDLoader } from "three/examples/jsm/loaders/PCDLoader";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import Label from "../primitives/Label";
-import Group, { GroupProps, GroupPropTypes } from "./Group";
+import Group, { GroupProps } from "./Group";
 
 const { useRef, useEffect, useMemo, memo } = React;
 
@@ -57,7 +56,7 @@ const PCD: React.FunctionComponent<PCDProps> = function PCD({
   pointSize = 0.01,
   ...otherProps
 }) {
-  const group = useRef();
+  const group = useRef<THREE.Group | null>(null);
 
   const loadingText = useMemo(
     function updateLoadText() {
@@ -82,13 +81,6 @@ const PCD: React.FunctionComponent<PCDProps> = function PCD({
     </Group>
   );
 };
-
-PCD.propTypes = exact({
-  pcdPath: PropTypes.string,
-  pcdURL: PropTypes.string,
-  pointSize: PropTypes.number,
-  ...GroupPropTypes
-});
 
 const PCDMemo = memo(PCD);
 PCDMemo.displayName = "PCD";

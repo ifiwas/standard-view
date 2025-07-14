@@ -1,13 +1,10 @@
 // Axis.tsx
 import * as React from "react";
 import * as THREE from "three";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
-import Group, { GroupProps, GroupPropTypes, generateGroupProps } from "./Group";
+import Group, { GroupProps, generateGroupProps } from "./Group";
 import Cylinder from "../primitives/Cylinder";
 import Sphere from "../primitives/Sphere";
 import Text from "../primitives/Text";
-import { propTypeNumberArrayOfLength } from "../utils/util";
 
 const { useMemo, memo } = React;
 
@@ -24,6 +21,7 @@ interface AxisProps extends GroupProps {
   zLabel?: string;
   labelSize?: number;
   labelHeight?: number;
+  labelRotation?: Array<number>;
   thickness?: number;
 }
 
@@ -53,6 +51,7 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
     zLabel = "z",
     labelSize = 0.2,
     labelHeight = 0.02,
+    labelRotation = [0, 0, 0],
     thickness = 0.1,
     children,
     ...otherProps
@@ -158,24 +157,6 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
     </Group>
   );
 };
-
-// -----  PropTypes   ----- //
-Axis.propTypes = exact({
-  x: propTypeNumberArrayOfLength(3),
-  y: propTypeNumberArrayOfLength(3),
-  z: propTypeNumberArrayOfLength(3),
-  xColor: PropTypes.string,
-  yColor: PropTypes.string,
-  zColor: PropTypes.string,
-  labelColor: PropTypes.string,
-  xLabel: PropTypes.string,
-  yLabel: PropTypes.string,
-  zLabel: PropTypes.string,
-  labelSize: PropTypes.number,
-  labelHeight: PropTypes.number,
-  thickness: PropTypes.number,
-  ...GroupPropTypes
-});
 
 const AxisMemo = memo(Axis);
 AxisMemo.displayName = "Axis";

@@ -1,7 +1,6 @@
 // util.ts
 import * as THREE from "three";
 import React, { memo, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 import Stats from "stats.js";
 import { useAnimationFrame } from "./hooks";
 import { ANCHORS, ANCHOR_SYNONYMS } from "./constants";
@@ -59,6 +58,11 @@ export function reconcileSynonymousProps(
   correctType: string,
   opposite = false
 ): void {
+  // Ensure props is an object
+  if (!props || typeof props !== 'object') {
+    return;
+  }
+
   synonymousProps.map(propNames => {
     const correctName = propNames[correctType];
     const synnonyms: string[] = Object.values(propNames).filter(
@@ -105,7 +109,7 @@ export function areArraysEqual(array1, array2): boolean {
  */
 export const FPS = memo(function FPS() {
   /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  const ref: React.RefObject<any> = useRef();
+  const ref: React.RefObject<any> = useRef<any>(null);
   const s = new Stats();
 
   useEffect(() => {
@@ -260,55 +264,4 @@ export function billboard({ mesh, camera }): void {
   mesh.current.lookAt(camera.position);
   /* eslint-disable-next-line no-param-reassign */
   mesh.current.up = camera.up;
-}
-
-// -----   Custom PropTypes   ----- //
-/**
- * propTypeNumberArrayOfLength
- * Custom PropType Validation of Array<number> with specific length.
- */
-export function propTypeNumberArrayOfLength(length) {
-  return function customPropType(
-    props,
-    propName,
-    componentName,
-    location,
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    propFullName
-  ): Error | null {
-    /* eslint-disable-next-line react/destructuring-assignment */
-    if (!/matchme/.test(props[propName])) {
-      const prop = props[propName];
-
-      // No Prop
-      if (prop == null) {
-        return null;
-      }
-
-      // Array Check
-      if (!Array.isArray(prop)) {
-        return new Error(
-          `Invalid prop \`${propName}\` of type \`${typeof prop}\` supplied to \`${componentName}\`, expected an array of length ${length}.`
-        );
-      }
-
-      // Length Check
-      if (prop.length !== length) {
-        return new Error(
-          `Invalid prop \`${propName}\` of type \`${typeof prop}\` of length ${
-            prop.length
-          } supplied to \`${componentName}\`, expected an array of length ${length}.`
-        );
-      }
-
-      // Each Element Number Check
-      const checkTypes = {};
-      checkTypes[propName] = PropTypes.arrayOf(PropTypes.number);
-      const checkProps = {};
-      checkProps[propName] = prop;
-      PropTypes.checkPropTypes(checkTypes, checkProps, location, componentName);
-    }
-
-    return null;
-  };
 }

@@ -2,10 +2,8 @@
 import React, { useEffect, useMemo, useRef, memo } from "react";
 import * as THREE from "three";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import { useViewContext, useFrame } from "../utils/hooks";
-import Group, { GroupProps, GroupPropTypes } from "./Group";
+import Group, { GroupProps } from "./Group";
 import { Label } from "../primitives";
 
 interface FBXProps extends GroupProps {
@@ -141,8 +139,8 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
   receiveShadow = false,
   ...otherProps
 }) {
-  const group = useRef();
-  const mixer = useRef<THREE.AnimationMixer>();
+  const group = useRef<THREE.Group | null>(null);
+  const mixer = useRef<THREE.AnimationMixer | null>(null);
   const { envMap } = useViewContext();
 
   // Material Props
@@ -243,12 +241,6 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
     </Group>
   );
 };
-
-FBX.propTypes = exact({
-  fbxPath: PropTypes.string,
-  fbxURL: PropTypes.string,
-  ...GroupPropTypes
-});
 
 const FBXMemo = memo(FBX);
 FBXMemo.displayName = "FBX";

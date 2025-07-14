@@ -2,7 +2,6 @@
 import * as React from "react";
 import * as THREE from "three";
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
-import _ from "lodash";
 import { useFrame, useViewContext } from "../utils/hooks";
 import { OrbitControls, MapControls } from "../controls/OrbitControls";
 import {
@@ -13,6 +12,11 @@ import {
 import { EPS } from "../utils/math";
 
 const { useEffect, useState, useMemo, memo } = React;
+
+// Helper function for deep comparison
+const isEqual = (a: any, b: any): boolean => {
+  return JSON.stringify(a) === JSON.stringify(b);
+};
 
 function SetControls({
   controlsType,
@@ -44,7 +48,7 @@ function SetControls({
   useEffect(
     function updateControlsProps() {
       // Update Controls Props
-      if (!_.isEqual(_controlsProps, controlsProps)) {
+      if (!isEqual(_controlsProps, controlsProps)) {
         setControlsProps(controlsProps);
       }
     },
@@ -55,7 +59,7 @@ function SetControls({
   useEffect(
     function updateCameraExtrinsics() {
       // Update Camera Extrinsics
-      if (!_.isEqual(_cameraExtrinsics, cameraExtrinsics)) {
+      if (!isEqual(_cameraExtrinsics, cameraExtrinsics)) {
         setCameraExtrinsics(cameraExtrinsics);
       }
     },
@@ -159,8 +163,8 @@ export default SetControlsMemo;
  *
  * Isolates the useFrame hook to avoid larger components, namely
  * SetControls, from re-rendering up to 3 times--this is a bug
- * from react-three-fiber.
- * Any react-three-fiber hook call incurs additional renders.
+ * from @react-three/fiber.
+ * Any @react-three/fiber hook call incurs additional renders.
  */
 export const UpdateControls = memo(function UpdateControls(): null {
   const { camera } = useViewContext();

@@ -3,10 +3,8 @@ import * as React from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import Label from "../primitives/Label";
-import Group, { GroupProps, GroupPropTypes } from "./Group";
+import Group, { GroupProps } from "./Group";
 import { useViewContext } from "../utils/hooks";
 
 const { useEffect, useMemo, useRef, memo } = React;
@@ -139,7 +137,7 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
   receiveShadow = false,
   ...otherProps
 }) {
-  const group = useRef();
+  const group = useRef<THREE.Group | null>(null);
   const { envMap } = useViewContext();
 
   // Material Props
@@ -230,13 +228,6 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
     </Group>
   );
 };
-
-GLTF.propTypes = exact({
-  gltfPath: PropTypes.string,
-  gltfURL: PropTypes.string,
-  dracoDecoderPath: PropTypes.string,
-  ...GroupPropTypes
-});
 
 const GLTFMemo = memo(GLTF);
 GLTFMemo.displayName = "GLTF";

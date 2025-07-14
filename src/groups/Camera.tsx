@@ -1,19 +1,16 @@
 // Camera.tsx
 import * as React from "react";
 import * as THREE from "three";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import Box from "../primitives/Box";
 import Circle from "../primitives/Circle";
 import Cylinder from "../primitives/Cylinder";
 import Label from "../primitives/Label";
 import Arrow from "./Arrow";
 import Text from "../primitives/Text";
-import { MeshProps, MeshPropTypes } from "../primitives/Mesh";
+import { MeshProps } from "../primitives/Mesh";
 import Group from "./Group";
 import {
   billboard,
-  propTypeNumberArrayOfLength,
   toQuaternion,
   objectToArray
 } from "../utils/util";
@@ -575,7 +572,10 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
       </Group>
 
       {/* Helper */}
-      {helper && <primitive object={cameraHelper} />}
+      {helper && (
+        // @ts-ignore: Property 'primitive' does not exist on type 'JSX.IntrinsicElements'
+        <primitive object={cameraHelper} />
+      )}
 
       {/* Cull */}
       <CullCoverage
@@ -588,35 +588,7 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
   );
 };
 
-// -----  PropTypes   ----- //
-Camera.propTypes = exact({
-  type: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  left: PropTypes.number,
-  right: PropTypes.number,
-  top: PropTypes.number,
-  bottom: PropTypes.number,
-  near: PropTypes.number,
-  far: PropTypes.number,
-  fov: PropTypes.number,
-  aspect: PropTypes.number,
-  meshColor: PropTypes.string,
-  wireframeColor: PropTypes.string,
-  coverageColor: PropTypes.string,
-  coverageOpacity: PropTypes.number,
-  helper: PropTypes.bool,
-  showLabel: PropTypes.bool,
-  showUp: PropTypes.bool,
-  showNormal: PropTypes.bool,
-  showRoll: PropTypes.bool,
-  showLookAt: PropTypes.bool,
-  labelText: PropTypes.string,
-  labelOffset: propTypeNumberArrayOfLength(3),
-  target: propTypeNumberArrayOfLength(3),
-  cull: PropTypes.bool,
-  ...MeshPropTypes
-});
+
 
 const CameraMemo = memo(Camera);
 CameraMemo.displayName = "Camera";

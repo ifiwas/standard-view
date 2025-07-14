@@ -1,9 +1,9 @@
 // Text.tsx
 import * as React from "react";
 import * as THREE from "three";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
-import Mesh, { MeshProps, MeshPropTypes } from "./Mesh";
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { Font } from 'three/examples/jsm/loaders/FontLoader.js';
+import Mesh, { MeshProps } from "./Mesh";
 import {
   getAlignmentOffset,
   billboard as billboardAnimation
@@ -76,7 +76,7 @@ interface TextProps extends MeshProps {
  * Text
  *
  * Text is also composed within a Mesh. The 3D text is actually a set
- * of extrusions handled by react-three-fiber/three.js's textGeometry.
+ * of extrusions handled by @react-three/fiber/three.js's textGeometry.
  * Materials are defaulted to meshBasicMaterials and accept the same
  * properties.
  *
@@ -166,7 +166,7 @@ const Text: React.FunctionComponent<TextProps> = function Text({
       }
 
       // Generate and cache threeFont
-      FONTS[_fontName].threeFont = new THREE.Font(FONTS[_fontName].typeface);
+      FONTS[_fontName].threeFont = new Font(FONTS[_fontName].typeface);
       return FONTS[_fontName].threeFont;
     },
     [_loaded, _fontName]
@@ -195,7 +195,7 @@ const Text: React.FunctionComponent<TextProps> = function Text({
 
       // TextBufferGeometry cannot be modified after instantiation
       // Must be recreated
-      const geometry = new THREE.TextBufferGeometry(text, fontParams);
+      const geometry = new TextGeometry(text, fontParams);
       geometry.computeBoundingBox();
 
       // Reset Alignment
@@ -206,7 +206,7 @@ const Text: React.FunctionComponent<TextProps> = function Text({
       const diagonal = [diagonalVec.x, diagonalVec.y, diagonalVec.z];
 
       const alignmentOffset = getAlignmentOffset(
-        Text.defaultProps.align,
+        "bottom-left",
         prevAlign.current,
         diagonal
       );
@@ -271,29 +271,6 @@ const Text: React.FunctionComponent<TextProps> = function Text({
     </Mesh>
   );
 };
-
-// -----  Default Props   ----- //
-Text.defaultProps = {
-  align: "bottom-left"
-};
-
-// -----  PropTypes   ----- //
-Text.propTypes = exact({
-  text: PropTypes.string,
-  fontName: PropTypes.string,
-  fontFile: PropTypes.string,
-  size: PropTypes.number,
-  height: PropTypes.number,
-  align: PropTypes.string,
-  curveSegments: PropTypes.number,
-  bevelEnabled: PropTypes.bool,
-  bevelThickness: PropTypes.number,
-  bevelSize: PropTypes.number,
-  bevelOffset: PropTypes.number,
-  bevelSegments: PropTypes.number,
-  billboard: PropTypes.bool,
-  ...MeshPropTypes
-});
 
 const TextMemo = memo(Text);
 TextMemo.displayName = "Text";

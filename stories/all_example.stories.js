@@ -1,19 +1,20 @@
-// example.stories.js
-import { withKnobs } from "@storybook/addon-knobs";
-import { storiesOf } from "@storybook/react";
+// all_example.stories.js
 
 // Example Stories
-import SamplePlatter from "./examples/sample-platter";
-import SC from "./examples/standard-cube";
-import DamageHelmet from "./examples/damaged-helmet";
-import RotationStory from "./examples/rotation";
+export { default as SamplePlatter } from './examples/sample-platter';
+export { default as DamagedHelmet } from './examples/damaged-helmet';
+import { default as StandardCube } from './examples/standard-cube';
+export { default as Hello } from './examples/hello';
+export { default as Rotation } from './examples/rotation';
 
-const stories = storiesOf("Standard View Core Examples", module);
+// Default export for Storybook
+export default {
+  title: 'Standard View Core Examples',
+};
 
-stories.addDecorator(withKnobs);
-
-// Example Stories
-stories.add("Sample Platter", SamplePlatter);
-stories.add("Standard Cube", SC);
-stories.add("Damaged Helmet", DamageHelmet);
-stories.add("Rotation", RotationStory);
+export const StandardCubeStory = {
+  render: StandardCube,
+  name: 'Standard Cube',
+  args: StandardCube.args,
+  argTypes: StandardCube.argTypes,
+};
