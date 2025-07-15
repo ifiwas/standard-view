@@ -1,6 +1,6 @@
 // sample-platter.tsx
 import React from 'react';
-import * as THREE from 'three';
+import { view3DProps } from '../utils/common';
 
 // standard-view
 import {
@@ -15,12 +15,7 @@ import {
 } from '../../src/';
 
 const SamplePlatter = (args: any = {}): React.ReactElement => {
-  const {
-    autoRotate = true,
-    cameraPosition = [0, 0, 5],
-    ballSpeed = 1,
-    spinSpeed = 1,
-  } = args || {};
+  const { autoRotate, cameraPosition, ballSpeed, spinSpeed } = args || {};
 
   // --------------------------//
   // -----   Animations   -----//
@@ -145,12 +140,12 @@ const SamplePlatter = (args: any = {}): React.ReactElement => {
     <View3D
       orbitControls
       camera={{ position: cameraPosition }}
+      controls={{ autoRotate }}
       style={{
-        height: 'stretch',
-        width: 'stretch',
+        height: '100vh',
+        width: '100vw',
         minHeight: '80vh',
       }}
-      controls={{ autoRotate }}
     >
       <Logo />
       <Paddle />
@@ -170,7 +165,7 @@ const SamplePlatter = (args: any = {}): React.ReactElement => {
 };
 
 SamplePlatter.args = {
-  autoRotate: true,
+  autoRotate: false,
   cameraPosition: [0, 0, 5],
   ballSpeed: 1,
   spinSpeed: 1,
@@ -180,7 +175,7 @@ SamplePlatter.argTypes = {
   autoRotate: {
     control: { type: 'boolean' },
     description: 'Enable auto rotation',
-    defaultValue: true,
+    defaultValue: false,
   },
   cameraPosition: {
     control: { type: 'object' },

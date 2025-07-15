@@ -1,5 +1,5 @@
 // common.js
-import React from "react";
+import React from 'react';
 import {
   Plane,
   DirectionalLight,
@@ -7,17 +7,17 @@ import {
   Sphere,
   Box,
   Group,
-  Text
-} from "../../src";
-import { generateGroupProps } from "../../src/groups/Group";
+  Text,
+} from '../../src';
+import { generateGroupProps } from '../../src/groups/Group';
 
 export const KNOB_GROUP = {
-  VIEW3D: "View3D",
-  GEOMETRY: "Geometry",
-  MATERIAL: "Material",
-  ENVIRONMENT: "Environment",
-  SIMULATION: "Simulation",
-  PERFORMANCE: "Performance"
+  VIEW3D: 'View3D',
+  GEOMETRY: 'Geometry',
+  MATERIAL: 'Material',
+  ENVIRONMENT: 'Environment',
+  SIMULATION: 'Simulation',
+  PERFORMANCE: 'Performance',
 };
 
 // ----------------------//
@@ -28,16 +28,16 @@ export const view3DProps = {
   camera: { position: [0, 4, 6] },
   shadowMapEnabled: true,
   style: {
-    height: "stretch",
-    width: "stretch",
-    minHeight: "80vh"
-  }
+    height: '100vh',
+    width: '100vw',
+    minHeight: '80vh',
+  },
 };
 
 export const STORY_STYLE = {
-  height: "stretch",
-  width: "stretch",
-  minHeight: "80vh"
+  height: 'stretch',
+  width: 'stretch',
+  minHeight: '80vh',
 };
 
 // --------------------------//
@@ -79,8 +79,8 @@ export function spinY({ mesh, state }: { mesh: any; state: any }): void {
 // -----------------------//
 export function Ground({
   position = [0, -1, 0],
-  materialType = "lambert",
-  color = "gray",
+  materialType = 'lambert',
+  color = 'gray',
   ...otherProps
 }: any): React.ReactElement {
   return (
