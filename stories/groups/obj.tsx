@@ -1,12 +1,12 @@
 // obj.tsx
-import React, { useState, useCallback } from "react";
-import Mousetrap from "mousetrap";
+import React, { useState, useCallback } from 'react';
+import Mousetrap from 'mousetrap';
 
 // standard-view
-import { View3D, OBJ, AmbientLight, Sphere, SpotLight, Group } from "../../src";
-import { Ground } from "../utils/common";
-import { DEFAULT_NORMAL } from "../../src/utils/constants";
-import * as THREE from "three";
+import { View3D, OBJ, AmbientLight, Sphere, SpotLight, Group } from '../../src';
+import { Ground } from '../utils/common';
+import { DEFAULT_NORMAL } from '../../src/utils/constants';
+import * as THREE from 'three';
 
 function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
   // Ornament
@@ -32,12 +32,12 @@ function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
         fov: 45,
         position: [0, 0, 20],
         target: [0, 6.5, 0],
-        up: [0, 1, 0]
+        up: [0, 1, 0],
       }}
       orbitControls
-      style={{ height: "stretch", width: "stretch", minHeight: "80vh" }}
+      style={{ height: 'stretch', width: 'stretch', minHeight: '80vh' }}
       controls={{ autoRotate, maxPolarAngle: Math.PI * 0.5 }}
-      gl={{ outputEncoding: THREE.sRGBEncoding }}
+      gl={{ outputEncoding: THREE.SRGBColorSpace }}
       backgroundEquirectangularTextureURL="backgrounds/snow-mountains2.jpg"
     >
       {/* Ground */}
@@ -118,58 +118,58 @@ function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
 }
 
 export default {
-  title: "Groups/OBJ",
+  title: 'Groups/OBJ',
   parameters: {
     docs: {
       description: {
-        component: "OBJ model loading with materials and textures"
-      }
-    }
+        component: 'OBJ model loading with materials and textures',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: true,
     },
     ornamentScale: {
-      control: { type: "object" },
-      description: "Ornament scale",
-      defaultValue: [0.4, 0.4, 0.4]
+      control: { type: 'object' },
+      description: 'Ornament scale',
+      defaultValue: [0.4, 0.4, 0.4],
     },
     ornamentVisible: {
-      control: { type: "boolean" },
-      description: "Ornament visibility",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Ornament visibility',
+      defaultValue: true,
     },
     ornamentCastShadow: {
-      control: { type: "boolean" },
-      description: "Ornament cast shadow",
-      defaultValue: true
-    }
-  }
+      control: { type: 'boolean' },
+      description: 'Ornament cast shadow',
+      defaultValue: true,
+    },
+  },
 };
 
 export function OBJStory(args: any = {}): React.ReactElement {
-  const { 
+  const {
     autoRotate = true,
     ornamentScale = [0.4, 0.4, 0.4],
     ornamentVisible = true,
-    ornamentCastShadow = true
+    ornamentCastShadow = true,
   } = args || {};
 
   const ornamentProps = {
     scale: ornamentScale,
     visible: ornamentVisible,
-    castShadow: ornamentCastShadow
+    castShadow: ornamentCastShadow,
   };
 
   const props = {
     autoRotate,
-    ornamentProps
+    ornamentProps,
   };
 
   return <OBJComponent {...props} />;
 }
 
-OBJStory.storyName = "OBJ";
+OBJStory.storyName = 'OBJ';

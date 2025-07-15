@@ -1,10 +1,17 @@
 // line.stories.js
 
 // Line Stories
-// export { default as Line } from "./lines/line";
-// export { default as BoundingBox } from "./lines/bounding-box";
+import { default as BoundingBox } from './lines/bounding-box';
+export { default as Line } from './lines/line';
 
 // Default export for Storybook
 export default {
-  title: "Lines"
+  title: 'Lines',
+};
+
+export const BoundingBoxStory = {
+  render: BoundingBox,
+  name: 'Bounding Box',
+  args: BoundingBox.args,
+  argTypes: BoundingBox.argTypes,
 };

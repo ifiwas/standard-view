@@ -4,19 +4,20 @@ import React from 'react';
 // standard-view
 import View3D from '../../src/views/View3D';
 import Box from '../../src/primitives/Box';
-import { view3DProps } from '../utils/common';
 
 const StandardCube = (args: any = {}): React.ReactElement => {
+  const { autoRotate, spinSpeed, scale } = args || {};
+
   function spin({ state, mesh }) {
     // Euler Rotation over X and Y axes.
-    state.spinSpeed = args.autoRotate ? args.spinSpeed : 0;
+    state.spinSpeed = autoRotate ? args.spinSpeed : 0;
     state.r = (state.r + 0.01 * state.spinSpeed) % (2 * Math.PI);
     mesh.current.rotation.y = state.r;
     mesh.current.rotation.x = state.r;
   }
 
   function toggleSpin() {
-    args.autoRotate = !args.autoRotate;
+    args.spinSpeed = args.spinSpeed ? 0 : spinSpeed;
   }
 
   return (
@@ -32,7 +33,7 @@ const StandardCube = (args: any = {}): React.ReactElement => {
         <Box
           textureURL="/standard-cube/sc.jpg"
           color="white"
-          scale={args.scale}
+          scale={scale}
           animation={spin}
           state={{ r: 0 }}
           onClick={toggleSpin}

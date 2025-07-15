@@ -5,7 +5,7 @@ import * as THREE from 'three';
 // standard-view
 import { View3D, GLTF } from '../../src';
 
-export default function DamagedHelmet(args: any = {}): React.ReactElement {
+const DamagedHelmet = (args: any = {}): React.ReactElement => {
   const {
     autoRotate = true,
     background = 'backgrounds/overpass.hdr',
@@ -39,54 +39,54 @@ export default function DamagedHelmet(args: any = {}): React.ReactElement {
       />
     </View3D>
   );
-}
+};
 
-export const DamagedHelmetStory = {
-  title: 'Damaged Helmet',
-  parameters: {
-    docs: {
-      description: {
-        component: 'A damaged helmet model with modern controls',
-      },
-    },
+DamagedHelmet.args = {
+  autoRotate: true,
+  background: 'backgrounds/overpass.hdr',
+  scale: [1, 1, 1],
+  position: [0, 0, 0],
+  rotation: [0, 0, 0],
+};
+
+DamagedHelmet.argTypes = {
+  autoRotate: {
+    control: { type: 'boolean' },
+    description: 'Enable auto rotation',
+    defaultValue: true,
   },
-  argTypes: {
-    autoRotate: {
-      control: { type: 'boolean' },
-      description: 'Enable auto rotation',
-      defaultValue: true,
+  background: {
+    control: { type: 'select' },
+    options: {
+      'Overpass HDR': 'backgrounds/overpass.hdr',
+      Store: 'backgrounds/store.jpg',
+      Manga: 'backgrounds/manga.jpg',
+      Croatia: 'backgrounds/croatia.jpg',
+      'Modern Room': 'backgrounds/modern-room.jpg',
+      Snow: 'backgrounds/snow.jpg',
+      Fridge: 'backgrounds/fridge.png',
+      'Drawing Room': 'backgrounds/drawingroom.jpg',
+      'Snow Mountains': 'backgrounds/snow-mountains.jpg',
+      Pattern: 'backgrounds/pattern.jpg',
     },
-    background: {
-      control: { type: 'select' },
-      options: {
-        'Overpass HDR': 'backgrounds/overpass.hdr',
-        Store: 'backgrounds/store.jpg',
-        Manga: 'backgrounds/manga.jpg',
-        Croatia: 'backgrounds/croatia.jpg',
-        'Modern Room': 'backgrounds/modern-room.jpg',
-        Snow: 'backgrounds/snow.jpg',
-        Fridge: 'backgrounds/fridge.png',
-        'Drawing Room': 'backgrounds/drawingroom.jpg',
-        'Snow Mountains': 'backgrounds/snow-mountains.jpg',
-        Pattern: 'backgrounds/pattern.jpg',
-      },
-      description: 'Background texture',
-      defaultValue: 'backgrounds/overpass.hdr',
-    },
-    scale: {
-      control: { type: 'object' },
-      description: 'Scale of the model',
-      defaultValue: [1, 1, 1],
-    },
-    position: {
-      control: { type: 'object' },
-      description: 'Position of the model',
-      defaultValue: [0, 0, 0],
-    },
-    rotation: {
-      control: { type: 'object' },
-      description: 'Rotation of the model',
-      defaultValue: [0, 0, 0],
-    },
+    description: 'Background texture',
+    defaultValue: 'backgrounds/overpass.hdr',
+  },
+  scale: {
+    control: { type: 'object' },
+    description: 'Scale of the model',
+    defaultValue: [1, 1, 1],
+  },
+  position: {
+    control: { type: 'object' },
+    description: 'Position of the model',
+    defaultValue: [0, 0, 0],
+  },
+  rotation: {
+    control: { type: 'object' },
+    description: 'Rotation of the model',
+    defaultValue: [0, 0, 0],
   },
 };
+
+export default DamagedHelmet;

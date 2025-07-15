@@ -1,15 +1,16 @@
 // SetControls.tsx
-import * as React from "react";
-import * as THREE from "three";
-import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
-import { useFrame, useViewContext } from "../utils/hooks";
-import { OrbitControls, MapControls } from "../controls/OrbitControls";
+import * as React from 'react';
+import * as THREE from 'three';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { MapControls } from 'three/examples/jsm/controls/MapControls';
+import { useFrame, useViewContext } from '../utils/hooks';
 import {
   CONTROLS_TYPES,
   DEFAULT_UP_VEC3,
-  DEFAULT_NORMAL_VEC3
-} from "../utils/constants";
-import { EPS } from "../utils/math";
+  DEFAULT_NORMAL_VEC3,
+} from '../utils/constants';
+import { EPS } from '../utils/math';
 
 const { useEffect, useState, useMemo, memo } = React;
 
@@ -23,7 +24,7 @@ function SetControls({
   cameraExtrinsics,
   polarAngle,
   azimuthAngle,
-  controlsProps
+  controlsProps,
 }): null {
   const { camera, gl } = useViewContext();
 
@@ -112,12 +113,11 @@ function SetControls({
 
       // Initialize Camera Controls
       if (CameraControls != null) {
-        // @ts-ignore:TS2351 new
         camera.controls = new CameraControls(
+          // polarAngle,
+          // azimuthAngle,
           camera,
-          gl.domElement,
-          polarAngle,
-          azimuthAngle
+          gl.domElement
         );
         camera.controls.enabled = true;
       }
@@ -130,7 +130,7 @@ function SetControls({
       _cameraExtrinsics,
       polarAngle,
       azimuthAngle,
-      gl.domElement
+      gl.domElement,
     ]
   );
 
@@ -155,7 +155,7 @@ function SetControls({
 }
 
 const SetControlsMemo = memo(SetControls);
-SetControlsMemo.displayName = "SetControls";
+SetControlsMemo.displayName = 'SetControls';
 export default SetControlsMemo;
 
 /**
@@ -177,4 +177,4 @@ export const UpdateControls = memo(function UpdateControls(): null {
 
   return null;
 });
-UpdateControls.displayName = "UpdateControls";
+UpdateControls.displayName = 'UpdateControls';

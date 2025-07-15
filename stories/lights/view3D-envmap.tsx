@@ -1,72 +1,77 @@
 // view3D-envmap.tsx
-import React from "react";
+import React from 'react';
 
 // standard-view
-import * as THREE from "three";
-import { View3D } from "../../src";
-import { Balls, Light, view3DProps } from "../utils/common";
+import * as THREE from 'three';
+import { View3D } from '../../src';
+import { Balls, Light, view3DProps } from '../utils/common';
 
 export default {
-  title: "Lights/View3DEnvMap",
+  title: 'Lights/View3DEnvMap',
   parameters: {
     docs: {
       description: {
-        component: "View3D environment mapping demonstration"
-      }
-    }
+        component: 'View3D environment mapping demonstration',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: true,
     },
     background: {
-      control: { type: "select" },
-      options: ["backgrounds/store.jpg", "backgrounds/manga.jpg", "backgrounds/croatia.jpg", "backgrounds/overpass.hdr"],
-      description: "Background texture",
-      defaultValue: "backgrounds/overpass.hdr"
+      control: { type: 'select' },
+      options: [
+        'backgrounds/store.jpg',
+        'backgrounds/manga.jpg',
+        'backgrounds/croatia.jpg',
+        'backgrounds/overpass.hdr',
+      ],
+      description: 'Background texture',
+      defaultValue: 'backgrounds/overpass.hdr',
     },
     view3DEnvMap: {
-      control: { type: "boolean" },
-      description: "Enable View3D environment mapping",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable View3D environment mapping',
+      defaultValue: true,
     },
     roughness: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Roughness (physical and standard materials)",
-      defaultValue: 0
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Roughness (physical and standard materials)',
+      defaultValue: 0,
     },
     metalness: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Metalness (physical and standard materials)",
-      defaultValue: 0.5
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Metalness (physical and standard materials)',
+      defaultValue: 0.5,
     },
     reflectivity: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Reflectivity (basic materials)",
-      defaultValue: 0.5
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Reflectivity (basic materials)',
+      defaultValue: 0.5,
     },
     lights: {
-      control: { type: "boolean" },
-      description: "Show lights",
-      defaultValue: true
-    }
-  }
+      control: { type: 'boolean' },
+      description: 'Show lights',
+      defaultValue: true,
+    },
+  },
 };
 
 export function View3DEnvMapStory(args: any = {}): React.ReactElement {
-  const { 
+  const {
     autoRotate = true,
-    background = "backgrounds/overpass.hdr",
+    background = 'backgrounds/overpass.hdr',
     view3DEnvMap = true,
     roughness = 0,
     metalness = 0.5,
     reflectivity = 0.5,
-    lights = true
+    lights = true,
   } = args || {};
 
-  const RGBE = background === "backgrounds/overpass.hdr";
+  const RGBE = background === 'backgrounds/overpass.hdr';
 
   return (
     <View3D
@@ -74,7 +79,7 @@ export function View3DEnvMapStory(args: any = {}): React.ReactElement {
       controls={{ autoRotate }}
       backgroundEquirectangularRGBEURL={RGBE ? background : undefined}
       backgroundEquirectangularTextureURL={background}
-      gl={{ outputEncoding: THREE.sRGBEncoding }}
+      gl={{ outputEncoding: THREE.SRGBColorSpace }}
     >
       {lights && <Light />}
       <Balls
@@ -87,4 +92,4 @@ export function View3DEnvMapStory(args: any = {}): React.ReactElement {
   );
 }
 
-View3DEnvMapStory.storyName = "View3DEnvMap";
+View3DEnvMapStory.storyName = 'View3DEnvMap';

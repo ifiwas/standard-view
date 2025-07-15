@@ -1,8 +1,8 @@
 // shadows.tsx
-import React from "react";
+import React from 'react';
 
 // standard-view
-import * as THREE from "three";
+import * as THREE from 'three';
 import {
   View3D,
   PointLight,
@@ -10,119 +10,119 @@ import {
   Sphere,
   Box,
   Cylinder,
-  GLTF
-} from "../../src";
-import { spin, spinY, Ground } from "../utils/common";
+  GLTF,
+} from '../../src';
+import { spin, spinY, Ground } from '../utils/common';
 
 export default {
-  title: "Lights/Shadows",
+  title: 'Lights/Shadows',
   parameters: {
     docs: {
       description: {
-        component: "Shadow demonstration with various lights and objects"
-      }
-    }
+        component: 'Shadow demonstration with various lights and objects',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: false
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: false,
     },
     shadowMapEnabled: {
-      control: { type: "boolean" },
-      description: "Enable shadow mapping",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable shadow mapping',
+      defaultValue: true,
     },
     shadowType: {
-      control: { type: "select" },
-      options: ["basic", "pcf", "pcfsoft"],
-      description: "Shadow type",
-      defaultValue: "pcfsoft"
+      control: { type: 'select' },
+      options: ['basic', 'pcf', 'pcfsoft'],
+      description: 'Shadow type',
+      defaultValue: 'pcfsoft',
     },
     flamingoCastShadow: {
-      control: { type: "boolean" },
-      description: "Flamingo cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Flamingo cast shadow',
+      defaultValue: true,
     },
     flamingoReceiveShadow: {
-      control: { type: "boolean" },
-      description: "Flamingo receive shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Flamingo receive shadow',
+      defaultValue: true,
     },
     helmetCastShadow: {
-      control: { type: "boolean" },
-      description: "Helmet cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Helmet cast shadow',
+      defaultValue: true,
     },
     helmetReceiveShadow: {
-      control: { type: "boolean" },
-      description: "Helmet receive shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Helmet receive shadow',
+      defaultValue: true,
     },
     redDiskCastShadow: {
-      control: { type: "boolean" },
-      description: "Red disk cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Red disk cast shadow',
+      defaultValue: true,
     },
     redDiskReceiveShadow: {
-      control: { type: "boolean" },
-      description: "Red disk receive shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Red disk receive shadow',
+      defaultValue: true,
     },
     goldBarCastShadow: {
-      control: { type: "boolean" },
-      description: "Gold bar cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Gold bar cast shadow',
+      defaultValue: true,
     },
     goldBarReceiveShadow: {
-      control: { type: "boolean" },
-      description: "Gold bar receive shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Gold bar receive shadow',
+      defaultValue: true,
     },
     light1CastShadow: {
-      control: { type: "boolean" },
-      description: "Light 1 cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Light 1 cast shadow',
+      defaultValue: true,
     },
     light1ShadowMapWidth: {
-      control: { type: "number", min: 512, max: 4096, step: 512 },
-      description: "Light 1 shadow map width",
-      defaultValue: 2048
+      control: { type: 'number', min: 512, max: 4096, step: 512 },
+      description: 'Light 1 shadow map width',
+      defaultValue: 2048,
     },
     light1ShadowMapHeight: {
-      control: { type: "number", min: 512, max: 4096, step: 512 },
-      description: "Light 1 shadow map height",
-      defaultValue: 2048
+      control: { type: 'number', min: 512, max: 4096, step: 512 },
+      description: 'Light 1 shadow map height',
+      defaultValue: 2048,
     },
     light2CastShadow: {
-      control: { type: "boolean" },
-      description: "Light 2 cast shadow",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Light 2 cast shadow',
+      defaultValue: true,
     },
     light2ShadowMapWidth: {
-      control: { type: "number", min: 512, max: 4096, step: 512 },
-      description: "Light 2 shadow map width",
-      defaultValue: 2048
+      control: { type: 'number', min: 512, max: 4096, step: 512 },
+      description: 'Light 2 shadow map width',
+      defaultValue: 2048,
     },
     light2ShadowMapHeight: {
-      control: { type: "number", min: 512, max: 4096, step: 512 },
-      description: "Light 2 shadow map height",
-      defaultValue: 2048
+      control: { type: 'number', min: 512, max: 4096, step: 512 },
+      description: 'Light 2 shadow map height',
+      defaultValue: 2048,
     },
     ambientLightIntensity: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Ambient light intensity",
-      defaultValue: 0.2
-    }
-  }
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Ambient light intensity',
+      defaultValue: 0.2,
+    },
+  },
 };
 
 export function ShadowStory(args: any = {}): React.ReactElement {
-  const { 
+  const {
     autoRotate = false,
     shadowMapEnabled = true,
-    shadowType = "pcfsoft",
+    shadowType = 'pcfsoft',
     flamingoCastShadow = true,
     flamingoReceiveShadow = true,
     helmetCastShadow = true,
@@ -137,7 +137,7 @@ export function ShadowStory(args: any = {}): React.ReactElement {
     light2CastShadow = true,
     light2ShadowMapWidth = 2048,
     light2ShadowMapHeight = 2048,
-    ambientLightIntensity = 0.2
+    ambientLightIntensity = 0.2,
   } = args || {};
 
   return (
@@ -148,12 +148,12 @@ export function ShadowStory(args: any = {}): React.ReactElement {
       shadowMapEnabled={shadowMapEnabled}
       shadowType={shadowType}
       style={{
-        height: "stretch",
-        width: "stretch",
-        minHeight: "80vh"
+        height: 'stretch',
+        width: 'stretch',
+        minHeight: '80vh',
       }}
       controls={{ autoRotate }}
-      gl={{ outputEncoding: THREE.sRGBEncoding }}
+      gl={{ outputEncoding: THREE.SRGBColorSpace }}
     >
       <Sphere
         position={[-4, 1.25, 1]}
@@ -236,11 +236,9 @@ export function ShadowStory(args: any = {}): React.ReactElement {
         shadowMapHeight={light2ShadowMapHeight}
         helper
       />
-      <AmbientLight
-        intensity={ambientLightIntensity}
-      />
+      <AmbientLight intensity={ambientLightIntensity} />
     </View3D>
   );
 }
 
-ShadowStory.storyName = "Shadows";
+ShadowStory.storyName = 'Shadows';

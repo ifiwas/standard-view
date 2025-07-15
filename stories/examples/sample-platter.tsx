@@ -1,55 +1,25 @@
 // sample-platter.tsx
-import React from "react";
+import React from 'react';
+import * as THREE from 'three';
 
 // standard-view
-import View3D from "../../src/views/View3D";
-import Box from "../../src/primitives/Box";
-import Capsule from "../../src/groups/Capsule";
-import Cylinder from "../../src/primitives/Cylinder";
-import Group from "../../src/groups/Group";
-import Plane from "../../src/primitives/Plane";
-import Sphere from "../../src/primitives/Sphere";
-import Text from "../../src/primitives/Text";
+import {
+  View3D,
+  Box,
+  Capsule,
+  Cylinder,
+  Group,
+  Plane,
+  Sphere,
+  Text,
+} from '../../src/';
 
-export default {
-  title: "Examples/Sample Platter",
-  parameters: {
-    docs: {
-      description: {
-        component: "A comprehensive example showcasing various Standard View components and animations"
-      }
-    }
-  },
-  argTypes: {
-    autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
-    },
-    cameraPosition: {
-      control: { type: "object" },
-      description: "Camera position",
-      defaultValue: [0, 0, 5]
-    },
-    ballSpeed: {
-      control: { type: "number", min: 0.1, max: 5, step: 0.1 },
-      description: "Ball bounce speed",
-      defaultValue: 1
-    },
-    spinSpeed: {
-      control: { type: "number", min: 0.1, max: 10, step: 0.1 },
-      description: "Spin animation speed",
-      defaultValue: 1
-    }
-  }
-};
-
-export function SamplePlatter(args: any = {}): React.ReactElement {
-  const { 
-    autoRotate = true, 
-    cameraPosition = [0, 0, 5], 
-    ballSpeed = 1, 
-    spinSpeed = 1 
+const SamplePlatter = (args: any = {}): React.ReactElement => {
+  const {
+    autoRotate = true,
+    cameraPosition = [0, 0, 5],
+    ballSpeed = 1,
+    spinSpeed = 1,
   } = args || {};
 
   // --------------------------//
@@ -176,9 +146,9 @@ export function SamplePlatter(args: any = {}): React.ReactElement {
       orbitControls
       camera={{ position: cameraPosition }}
       style={{
-        height: "stretch",
-        width: "stretch",
-        minHeight: "80vh"
+        height: 'stretch',
+        width: 'stretch',
+        minHeight: '80vh',
       }}
       controls={{ autoRotate }}
     >
@@ -197,6 +167,36 @@ export function SamplePlatter(args: any = {}): React.ReactElement {
       <Sc />
     </View3D>
   );
-}
+};
 
-SamplePlatter.storyName = "Sample Platter";
+SamplePlatter.args = {
+  autoRotate: true,
+  cameraPosition: [0, 0, 5],
+  ballSpeed: 1,
+  spinSpeed: 1,
+};
+
+SamplePlatter.argTypes = {
+  autoRotate: {
+    control: { type: 'boolean' },
+    description: 'Enable auto rotation',
+    defaultValue: true,
+  },
+  cameraPosition: {
+    control: { type: 'object' },
+    description: 'Camera position',
+    defaultValue: [0, 0, 5],
+  },
+  ballSpeed: {
+    control: { type: 'number', min: 0.1, max: 5, step: 0.1 },
+    description: 'Ball bounce speed',
+    defaultValue: 1,
+  },
+  spinSpeed: {
+    control: { type: 'number', min: 0.1, max: 10, step: 0.1 },
+    description: 'Spin animation speed',
+    defaultValue: 1,
+  },
+};
+
+export default SamplePlatter;

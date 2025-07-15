@@ -1,34 +1,27 @@
 // Mesh.tsx
-import * as React from "react";
-import * as THREE from "three";
-import { DEFAULT_COLOR } from "../utils/styles";
+import * as React from 'react';
+import * as THREE from 'three';
+import { DEFAULT_COLOR } from '../utils/styles';
 import {
   DEFAULT_NORMAL,
   DEFAULT_NORMAL_VEC3,
   MATERIAL_TYPES,
   SIDE_TYPES,
-  EULER_ORDERS
-} from "../utils/constants";
-import { StandardViewTypes } from "../utils/interfaces";
-import { EPS } from "../utils/math";
+  EULER_ORDERS,
+} from '../utils/constants';
+import { StandardViewTypes } from '../utils/interfaces';
+import { EPS } from '../utils/math';
 import {
   handleClick,
   checkPropagation,
-  AnimationComponent
-} from "../utils/events";
-import { useViewContext } from "../utils/hooks";
-import { objectToArray, filterArrayLength, toQuaternion } from "../utils/util";
-import { performanceStart, performanceEnd } from "../utils/performance";
+  AnimationComponent,
+} from '../utils/events';
+import { useViewContext } from '../utils/hooks';
+import { objectToArray, filterArrayLength, toQuaternion } from '../utils/util';
+import { performanceStart, performanceEnd } from '../utils/performance';
 
-const {
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
-  useCallback,
-  forwardRef,
-  memo
-} = React;
+const { useState, useRef, useEffect, useMemo, useCallback, forwardRef, memo } =
+  React;
 
 export interface MeshProps {
   // Mesh Props
@@ -133,7 +126,7 @@ const MaterialComponent = memo<MaterialComponentProps>(
     materialType,
     material,
     hasMaterialChild,
-    materialProps
+    materialProps,
   }) {
     const MeshMaterial = useMemo(
       function updateMeshMaterial() {
@@ -155,7 +148,7 @@ const MaterialComponent = memo<MaterialComponentProps>(
   }
   /* eslint-enable react/prop-types */
 );
-MaterialComponent.displayName = "MaterialComponent";
+MaterialComponent.displayName = 'MaterialComponent';
 
 /**
  * Mesh
@@ -230,7 +223,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
     quaternion,
     // Material Props
     material,
-    materialType = "basic",
+    materialType = 'basic',
     color = DEFAULT_COLOR,
     hoverColor,
     opacity = 1,
@@ -261,7 +254,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
     // edges = false,
     // edgeColor = "black",
     // edgeThresholdAngle = 1,
-    side = "front",
+    side = 'front',
     depthWrite = true,
     depthTest = true,
     // Map Props
@@ -299,7 +292,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
   },
   ref
 ) {
-  performanceStart("Mesh");
+  performanceStart('Mesh');
 
   // Canvas Properties
   // const canvasProps = useContext(ViewContext);
@@ -410,7 +403,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
   const mapProps = useMemo(
     function initMapProps() {
       return {
-        anisotropy
+        anisotropy,
       };
     },
     [anisotropy]
@@ -446,7 +439,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
   // Environment Map
   const _envMap = useMemo(
     function updateEnvMap() {
-      const compatibleMaterials = ["basic", "physical", "standard"];
+      const compatibleMaterials = ['basic', 'physical', 'standard'];
       return view3DEnvMap && compatibleMaterials.includes(materialType)
         ? viewContextEnvMap
         : envMap;
@@ -472,7 +465,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         metalnessMap,
         alphaMap,
         envMap: _envMap,
-        envMapIntensity
+        envMapIntensity,
       };
 
       return otherMapProps;
@@ -492,14 +485,14 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
       metalnessMap,
       alphaMap,
       _envMap,
-      envMapIntensity
+      envMapIntensity,
     ]
   );
 
   // Side
   const _side = useMemo(
     function updateSide() {
-      if (typeof side === "string") {
+      if (typeof side === 'string') {
         return SIDE_TYPES[side];
       } else {
         // THREE.Side
@@ -514,16 +507,16 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
     function updateMaterialProps() {
       // Metalness
       const _metalness =
-        materialType === "standard" || materialType === "physical"
+        materialType === 'standard' || materialType === 'physical'
           ? metalness
           : undefined;
       // Roughness
       const _roughness =
-        materialType === "standard" || materialType === "physical"
+        materialType === 'standard' || materialType === 'physical'
           ? roughness
           : undefined;
       // Reflectivity
-      const reflectiveMaterials = ["basic", "lambert", "phong", "physical"];
+      const reflectiveMaterials = ['basic', 'lambert', 'phong', 'physical'];
       const _reflectivity = reflectiveMaterials.includes(materialType)
         ? reflectivity
         : undefined;
@@ -540,7 +533,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         reflectivity: _reflectivity,
         side: _side,
         depthWrite,
-        depthTest
+        depthTest,
       };
 
       // Clean undefined and null
@@ -567,7 +560,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
       transparent,
       _side,
       depthWrite,
-      depthTest
+      depthTest,
     ]
   );
 
@@ -672,7 +665,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
       onPointerDown,
       onPointerUp,
       onPointerMove,
-      onWheel
+      onWheel,
     ]
   );
 
@@ -686,7 +679,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         mesh,
         state: _state,
         setState,
-        ...canvasProps
+        ...canvasProps,
       };
     },
     [mesh, _state, setState, canvasProps]
@@ -701,7 +694,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         mesh,
         eventProps,
         onClick,
-        onDoubleClick
+        onDoubleClick,
       };
     },
     [
@@ -710,7 +703,7 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
       mesh,
       eventProps,
       onClick,
-      onDoubleClick
+      onDoubleClick,
     ]
   );
 
@@ -835,11 +828,11 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
     [receiveShadow, mesh]
   );
 
-  performanceEnd("Mesh");
+  performanceEnd('Mesh');
 
   return (
     <>
-      {performanceStart("Around mesh")}
+      {performanceStart('Around mesh')}
       <mesh
         ref={mesh}
         // Event Functions
@@ -855,7 +848,6 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         position={_position as [number, number, number]}
         scale={_scale as [number, number, number]}
         quaternion={_quaternion}
-        // @ts-ignore:TS2322 // conflict with Mesh from THREE
         material={_material}
         receiveShadow={_receiveShadow}
         {...otherProps}
@@ -863,21 +855,18 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
         <MaterialComponent
           materialType={materialType}
           hasMaterialChild={hasMaterialChild}
-          // @ts-ignore:TS2322 // conflict with Mesh from THREE
-          material={_material}
+          material={_material as THREE.Material}
           materialProps={materialProps}
         />
         {animation && <AnimationComponent animation={_animation} />}
         {_children}
-      {/* @ts-ignore: Property 'mesh' does not exist on type 'JSX.IntrinsicElements' */}
+        {/* @ts-ignore: Property 'mesh' does not exist on type 'JSX.IntrinsicElements' */}
       </mesh>
-      {performanceEnd("Around mesh")}
+      {performanceEnd('Around mesh')}
     </>
   );
 });
 
-
-
 const MeshMemo = memo(Mesh);
-MeshMemo.displayName = "Mesh";
+MeshMemo.displayName = 'Mesh';
 export default MeshMemo;

@@ -98,7 +98,7 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
   shadowMapEnabled = false,
   shadowType = 'pcfsoft',
   camera,
-  controls,
+  controls = {},
   gl,
   orthographic,
   contexts,
@@ -243,7 +243,7 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
       };
       /* eslint-enable no-shadow */
 
-      return { cameraExtrinsics, cameraProps: cameraProps || {} };
+      return { cameraExtrinsics, cameraProps };
     },
     [camera]
   );
@@ -252,26 +252,25 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
   const controlsProps = useMemo(
     function updateControlsProps() {
       // Extract Angles of Rotation
-      /* eslint-disable-next-line no-shadow */
-      const { polarAngle = 0, azimuthAngle = 0, ...controlsProps } =
-        controls || {};
+      var { polarAngle = 0, azimuthAngle = 0, ...controlsProps } = controls;
+      controlsProps = controlsProps || {};
 
       // Reconcile Control Props
       if (controlsType !== 'none') {
         reconcileSynonymousProps(
-          controlsProps || {},
+          controlsProps,
           SYNONYMOUS_CONTROLS_PROPS,
           controlsType
         );
         reconcileSynonymousProps(
-          controlsProps || {},
+          controlsProps,
           ANTONYMOUS_CONTROLS_PROPS,
           controlsType,
           true
         );
       }
       reconcileSynonymousProps(
-        controlsProps || {},
+        controlsProps,
         SYNONYMOUS_CAMERA_PROPS,
         cameraType
       );
@@ -282,9 +281,7 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
         azimuthAngle,
         cameraExtrinsics,
         controlsProps:
-          Object.keys(controlsProps || {}).length > 0
-            ? controlsProps || {}
-            : undefined,
+          Object.keys(controlsProps).length > 0 ? controlsProps : undefined,
       };
     },
     [controlsType, cameraType, controls, cameraExtrinsics]
@@ -304,8 +301,8 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
     <>
       {contextListeners}
       <Canvas
-        // camera={cameraProps}
-        // orthographic={orthographic}
+        camera={cameraProps}
+        orthographic={orthographic}
         // updateDefaultCamera={updateDefaultCamera}
         // @ts-ignore:TS2559 no properties in common with Partial<WebGLRenderer>
         gl={glParameters}
@@ -318,10 +315,6 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
             <SetBackground {...backgroundProps} />
             <SetShadows {...shadowProps} />
             <SetControls {...controlsProps} />
-            <SceneCamera
-              camera={{ ...cameraExtrinsics, ...cameraProps }}
-              orthographic={orthographic}
-            />
             {(mapControls ||
               trackballControls ||
               (controls && controls.autoRotate)) && <UpdateControls />}

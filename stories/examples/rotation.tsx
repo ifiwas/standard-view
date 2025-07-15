@@ -17,42 +17,14 @@ import { Ground, view3DProps } from '../utils/common';
 
 import { DEFAULT_RIGHT } from '../../src/utils/constants';
 
-export default {
-  title: 'Rotation Story',
-  render: RotationStory,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Demonstrates rotation controls with quaternion, normal, and roll',
-      },
-    },
-  },
-  argTypes: {
-    quaternion: {
-      control: { type: 'object' },
-      description: 'Quaternion rotation values',
-      defaultValue: [],
-    },
-    rotation: {
-      control: { type: 'object' },
-      description: 'Euler rotation values',
-      defaultValue: [0, 0, 0],
-    },
-    normal: {
-      control: { type: 'object' },
-      description: 'Normal vector',
-      defaultValue: [0, 0, 1],
-    },
-    roll: {
-      control: { type: 'number' },
-      description: 'Roll angle in radians',
-      defaultValue: 0,
-    },
-  },
-};
+const Rotation = (args: any = {}): React.ReactElement => {
+  const {
+    quaternion = [],
+    rotation = [0, 0, 0],
+    normal = [0, 0, 1],
+    roll = 0,
+  } = args || {};
 
-function RotationStory({ rotation, normal, roll, quaternion }) {
   return (
     <View3D
       {...view3DProps}
@@ -108,11 +80,36 @@ function RotationStory({ rotation, normal, roll, quaternion }) {
       <Ground />
     </View3D>
   );
-}
+};
 
-RotationStory.args = {
+Rotation.args = {
   quaternion: [],
   rotation: [0, 0, 0],
   normal: [0, 0, 1],
   roll: 0,
 };
+
+Rotation.argTypes = {
+  quaternion: {
+    control: { type: 'object' },
+    description: 'Quaternion rotation values',
+    defaultValue: [],
+  },
+  rotation: {
+    control: { type: 'object' },
+    description: 'Euler rotation values',
+    defaultValue: [0, 0, 0],
+  },
+  normal: {
+    control: { type: 'object' },
+    description: 'Normal vector',
+    defaultValue: [0, 0, 1],
+  },
+  roll: {
+    control: { type: 'number' },
+    description: 'Roll angle in radians',
+    defaultValue: 0,
+  },
+};
+
+export default Rotation;

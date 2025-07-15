@@ -1,101 +1,101 @@
 // box.tsx
-import React from "react";
+import React from 'react';
 
 // standard-view
-import { View3D, Box } from "../../src";
-import { view3DProps, Ground, Light } from "../utils/common";
-import { DEFAULT_NORMAL } from "../../src/utils/constants";
+import { View3D, Box } from '../../src';
+import { view3DProps, Ground, Light } from '../utils/common';
+import { DEFAULT_NORMAL } from '../../src/utils/constants';
 
 export default {
-  title: "Meshes/Box",
+  title: 'Meshes/Box',
   parameters: {
     docs: {
       description: {
-        component: "A 3D box primitive with customizable properties"
-      }
-    }
+        component: 'A 3D box primitive with customizable properties',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: true,
     },
     color: {
-      control: { type: "color" },
-      description: "Box color",
-      defaultValue: "green"
+      control: { type: 'color' },
+      description: 'Box color',
+      defaultValue: 'green',
     },
     hoverColor: {
-      control: { type: "color" },
-      description: "Color on hover",
-      defaultValue: "red"
+      control: { type: 'color' },
+      description: 'Color on hover',
+      defaultValue: 'red',
     },
     hoverable: {
-      control: { type: "boolean" },
-      description: "Enable hover effects",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable hover effects',
+      defaultValue: true,
     },
     position: {
-      control: { type: "object" },
-      description: "Box position",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Box position',
+      defaultValue: [0, 0, 0],
     },
     scale: {
-      control: { type: "object" },
-      description: "Box scale",
-      defaultValue: [1, 1, 1]
+      control: { type: 'object' },
+      description: 'Box scale',
+      defaultValue: [1, 1, 1],
     },
     rotation: {
-      control: { type: "object" },
-      description: "Box rotation",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Box rotation',
+      defaultValue: [0, 0, 0],
     },
     normal: {
-      control: { type: "object" },
-      description: "Normal vector",
-      defaultValue: DEFAULT_NORMAL
+      control: { type: 'object' },
+      description: 'Normal vector',
+      defaultValue: DEFAULT_NORMAL,
     },
     roll: {
-      control: { type: "number", min: 0, max: Math.PI * 2, step: 0.1 },
-      description: "Roll angle",
-      defaultValue: 0
+      control: { type: 'number', min: 0, max: Math.PI * 2, step: 0.1 },
+      description: 'Roll angle',
+      defaultValue: 0,
     },
     opacity: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Material opacity",
-      defaultValue: 1
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Material opacity',
+      defaultValue: 1,
     },
     side: {
-      control: { type: "select" },
-      options: ["front", "back", "double"],
-      description: "Material side",
-      defaultValue: "double"
+      control: { type: 'select' },
+      options: ['front', 'back', 'double'],
+      description: 'Material side',
+      defaultValue: 'double',
     },
     materialType: {
-      control: { type: "select" },
-      options: ["basic", "lambert", "phong", "physical", "standard"],
-      description: "Material type",
-      defaultValue: "physical"
+      control: { type: 'select' },
+      options: ['basic', 'lambert', 'phong', 'physical', 'standard'],
+      description: 'Material type',
+      defaultValue: 'physical',
     },
     castShadow: {
-      control: { type: "boolean" },
-      description: "Cast shadows",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Cast shadows',
+      defaultValue: true,
     },
     wireframe: {
-      control: { type: "boolean" },
-      description: "Show wireframe",
-      defaultValue: false
-    }
-  }
+      control: { type: 'boolean' },
+      description: 'Show wireframe',
+      defaultValue: false,
+    },
+  },
 };
 
 export function BoxStory(args: any = {}): React.ReactElement {
   const {
     autoRotate = true,
-    color = "green",
-    hoverColor = "red",
+    color = 'green',
+    hoverColor = 'red',
     hoverable = true,
     position = [0, 0, 0],
     scale = [1, 1, 1],
@@ -103,10 +103,10 @@ export function BoxStory(args: any = {}): React.ReactElement {
     normal = DEFAULT_NORMAL,
     roll = 0,
     opacity = 1,
-    side = "double",
-    materialType = "physical",
+    side = 'double',
+    materialType = 'physical',
     castShadow = true,
-    wireframe = false
+    wireframe = false,
   } = args || {};
 
   return (
@@ -132,4 +132,4 @@ export function BoxStory(args: any = {}): React.ReactElement {
   );
 }
 
-BoxStory.storyName = "Box";
+BoxStory.storyName = 'Box';

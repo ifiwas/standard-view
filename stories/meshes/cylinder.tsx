@@ -1,136 +1,136 @@
 // cylinder.tsx
-import React from "react";
+import React from 'react';
 
 // standard-view
-import View3D from "../../src/views/View3D";
-import Cylinder from "../../src/primitives/Cylinder";
-import { view3DProps, Ground, Light } from "../utils/common";
+import View3D from '../../src/views/View3D';
+import Cylinder from '../../src/primitives/Cylinder';
+import { view3DProps, Ground, Light } from '../utils/common';
 
 export default {
-  title: "Meshes/Cylinder",
+  title: 'Meshes/Cylinder',
   parameters: {
     docs: {
       description: {
-        component: "3D cylinder primitive with customizable properties"
-      }
-    }
+        component: '3D cylinder primitive with customizable properties',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: true,
     },
     color: {
-      control: { type: "color" },
-      description: "Cylinder color",
-      defaultValue: "blue"
+      control: { type: 'color' },
+      description: 'Cylinder color',
+      defaultValue: 'blue',
     },
     hoverColor: {
-      control: { type: "color" },
-      description: "Color on hover",
-      defaultValue: "red"
+      control: { type: 'color' },
+      description: 'Color on hover',
+      defaultValue: 'red',
     },
     hoverable: {
-      control: { type: "boolean" },
-      description: "Enable hover effects",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable hover effects',
+      defaultValue: true,
     },
     position: {
-      control: { type: "object" },
-      description: "Cylinder position",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Cylinder position',
+      defaultValue: [0, 0, 0],
     },
     start: {
-      control: { type: "object" },
-      description: "Start point",
-      defaultValue: [0, -0.5, 0]
+      control: { type: 'object' },
+      description: 'Start point',
+      defaultValue: [0, -0.5, 0],
     },
     end: {
-      control: { type: "object" },
-      description: "End point",
-      defaultValue: [0, 0.5, 0]
+      control: { type: 'object' },
+      description: 'End point',
+      defaultValue: [0, 0.5, 0],
     },
     scale: {
-      control: { type: "object" },
-      description: "Cylinder scale",
-      defaultValue: [1, 1, 1]
+      control: { type: 'object' },
+      description: 'Cylinder scale',
+      defaultValue: [1, 1, 1],
     },
     rotation: {
-      control: { type: "object" },
-      description: "Cylinder rotation",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Cylinder rotation',
+      defaultValue: [0, 0, 0],
     },
     roll: {
-      control: { type: "number", min: 0, max: Math.PI * 2, step: 0.1 },
-      description: "Roll angle",
-      defaultValue: 0
+      control: { type: 'number', min: 0, max: Math.PI * 2, step: 0.1 },
+      description: 'Roll angle',
+      defaultValue: 0,
     },
     radius: {
-      control: { type: "number", min: 0.1, max: 5, step: 0.1 },
-      description: "Cylinder radius",
-      defaultValue: 1
+      control: { type: 'number', min: 0.1, max: 5, step: 0.1 },
+      description: 'Cylinder radius',
+      defaultValue: 1,
     },
     radiusTop: {
-      control: { type: "number", min: 0.1, max: 5, step: 0.1 },
-      description: "Top radius",
-      defaultValue: 1
+      control: { type: 'number', min: 0.1, max: 5, step: 0.1 },
+      description: 'Top radius',
+      defaultValue: 1,
     },
     radiusBottom: {
-      control: { type: "number", min: 0.1, max: 5, step: 0.1 },
-      description: "Bottom radius",
-      defaultValue: 1
+      control: { type: 'number', min: 0.1, max: 5, step: 0.1 },
+      description: 'Bottom radius',
+      defaultValue: 1,
     },
     radialSegments: {
-      control: { type: "number", min: 3, max: 64, step: 1 },
-      description: "Radial segments",
-      defaultValue: 32
+      control: { type: 'number', min: 3, max: 64, step: 1 },
+      description: 'Radial segments',
+      defaultValue: 32,
     },
     heightSegments: {
-      control: { type: "number", min: 1, max: 16, step: 1 },
-      description: "Height segments",
-      defaultValue: 1
+      control: { type: 'number', min: 1, max: 16, step: 1 },
+      description: 'Height segments',
+      defaultValue: 1,
     },
     openEnded: {
-      control: { type: "boolean" },
-      description: "Open ended",
-      defaultValue: false
+      control: { type: 'boolean' },
+      description: 'Open ended',
+      defaultValue: false,
     },
     opacity: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Material opacity",
-      defaultValue: 1
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Material opacity',
+      defaultValue: 1,
     },
     side: {
-      control: { type: "select" },
-      options: ["front", "back", "double"],
-      description: "Material side",
-      defaultValue: "double"
+      control: { type: 'select' },
+      options: ['front', 'back', 'double'],
+      description: 'Material side',
+      defaultValue: 'double',
     },
     materialType: {
-      control: { type: "select" },
-      options: ["basic", "lambert", "phong", "physical", "standard"],
-      description: "Material type",
-      defaultValue: "physical"
+      control: { type: 'select' },
+      options: ['basic', 'lambert', 'phong', 'physical', 'standard'],
+      description: 'Material type',
+      defaultValue: 'physical',
     },
     castShadow: {
-      control: { type: "boolean" },
-      description: "Cast shadows",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Cast shadows',
+      defaultValue: true,
     },
     wireframe: {
-      control: { type: "boolean" },
-      description: "Show wireframe",
-      defaultValue: false
-    }
-  }
+      control: { type: 'boolean' },
+      description: 'Show wireframe',
+      defaultValue: false,
+    },
+  },
 };
 
 export function CylinderStory(args: any = {}): React.ReactElement {
-  const { 
+  const {
     autoRotate = true,
-    color = "blue",
-    hoverColor = "red",
+    color = 'blue',
+    hoverColor = 'red',
     hoverable = true,
     position = [0, 0, 0],
     start = [0, -0.5, 0],
@@ -145,10 +145,10 @@ export function CylinderStory(args: any = {}): React.ReactElement {
     heightSegments = 1,
     openEnded = false,
     opacity = 1,
-    side = "double",
-    materialType = "physical",
+    side = 'double',
+    materialType = 'physical',
     castShadow = true,
-    wireframe = false
+    wireframe = false,
   } = args || {};
 
   return (
@@ -181,4 +181,4 @@ export function CylinderStory(args: any = {}): React.ReactElement {
   );
 }
 
-CylinderStory.storyName = "Cylinder";
+CylinderStory.storyName = 'Cylinder';

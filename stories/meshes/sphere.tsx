@@ -1,126 +1,126 @@
 // sphere.tsx
-import React from "react";
+import React from 'react';
 
 // standard-view
-import View3D from "../../src/views/View3D";
-import Sphere from "../../src/primitives/Sphere";
-import { view3DProps, Ground, Light } from "../utils/common";
+import View3D from '../../src/views/View3D';
+import Sphere from '../../src/primitives/Sphere';
+import { view3DProps, Ground, Light } from '../utils/common';
 
 export default {
-  title: "Meshes/Sphere",
+  title: 'Meshes/Sphere',
   parameters: {
     docs: {
       description: {
-        component: "3D sphere primitive with customizable properties"
-      }
-    }
+        component: '3D sphere primitive with customizable properties',
+      },
+    },
   },
   argTypes: {
     autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable auto rotation',
+      defaultValue: true,
     },
     color: {
-      control: { type: "color" },
-      description: "Sphere color",
-      defaultValue: "gold"
+      control: { type: 'color' },
+      description: 'Sphere color',
+      defaultValue: 'gold',
     },
     hoverColor: {
-      control: { type: "color" },
-      description: "Color on hover",
-      defaultValue: "red"
+      control: { type: 'color' },
+      description: 'Color on hover',
+      defaultValue: 'red',
     },
     hoverable: {
-      control: { type: "boolean" },
-      description: "Enable hover effects",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Enable hover effects',
+      defaultValue: true,
     },
     radius: {
-      control: { type: "number", min: 0.1, max: 5, step: 0.1 },
-      description: "Sphere radius",
-      defaultValue: 1
+      control: { type: 'number', min: 0.1, max: 5, step: 0.1 },
+      description: 'Sphere radius',
+      defaultValue: 1,
     },
     widthSegments: {
-      control: { type: "number", min: 3, max: 64, step: 1 },
-      description: "Width segments",
-      defaultValue: 32
+      control: { type: 'number', min: 3, max: 64, step: 1 },
+      description: 'Width segments',
+      defaultValue: 32,
     },
     heightSegments: {
-      control: { type: "number", min: 2, max: 64, step: 1 },
-      description: "Height segments",
-      defaultValue: 32
+      control: { type: 'number', min: 2, max: 64, step: 1 },
+      description: 'Height segments',
+      defaultValue: 32,
     },
     phiStart: {
-      control: { type: "number", min: 0, max: Math.PI * 2, step: 0.1 },
-      description: "Phi start angle",
-      defaultValue: 0
+      control: { type: 'number', min: 0, max: Math.PI * 2, step: 0.1 },
+      description: 'Phi start angle',
+      defaultValue: 0,
     },
     phiLength: {
-      control: { type: "number", min: 0, max: Math.PI * 2, step: 0.1 },
-      description: "Phi length",
-      defaultValue: Math.PI * 2
+      control: { type: 'number', min: 0, max: Math.PI * 2, step: 0.1 },
+      description: 'Phi length',
+      defaultValue: Math.PI * 2,
     },
     thetaStart: {
-      control: { type: "number", min: 0, max: Math.PI, step: 0.1 },
-      description: "Theta start angle",
-      defaultValue: 0
+      control: { type: 'number', min: 0, max: Math.PI, step: 0.1 },
+      description: 'Theta start angle',
+      defaultValue: 0,
     },
     thetaLength: {
-      control: { type: "number", min: 0, max: Math.PI, step: 0.1 },
-      description: "Theta length",
-      defaultValue: Math.PI
+      control: { type: 'number', min: 0, max: Math.PI, step: 0.1 },
+      description: 'Theta length',
+      defaultValue: Math.PI,
     },
     position: {
-      control: { type: "object" },
-      description: "Sphere position",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Sphere position',
+      defaultValue: [0, 0, 0],
     },
     scale: {
-      control: { type: "object" },
-      description: "Sphere scale",
-      defaultValue: [1, 1, 1]
+      control: { type: 'object' },
+      description: 'Sphere scale',
+      defaultValue: [1, 1, 1],
     },
     rotation: {
-      control: { type: "object" },
-      description: "Sphere rotation",
-      defaultValue: [0, 0, 0]
+      control: { type: 'object' },
+      description: 'Sphere rotation',
+      defaultValue: [0, 0, 0],
     },
     opacity: {
-      control: { type: "number", min: 0, max: 1, step: 0.1 },
-      description: "Material opacity",
-      defaultValue: 1
+      control: { type: 'number', min: 0, max: 1, step: 0.1 },
+      description: 'Material opacity',
+      defaultValue: 1,
     },
     side: {
-      control: { type: "select" },
-      options: ["front", "back", "double"],
-      description: "Material side",
-      defaultValue: "double"
+      control: { type: 'select' },
+      options: ['front', 'back', 'double'],
+      description: 'Material side',
+      defaultValue: 'double',
     },
     materialType: {
-      control: { type: "select" },
-      options: ["basic", "lambert", "phong", "physical", "standard"],
-      description: "Material type",
-      defaultValue: "physical"
+      control: { type: 'select' },
+      options: ['basic', 'lambert', 'phong', 'physical', 'standard'],
+      description: 'Material type',
+      defaultValue: 'physical',
     },
     castShadow: {
-      control: { type: "boolean" },
-      description: "Cast shadows",
-      defaultValue: true
+      control: { type: 'boolean' },
+      description: 'Cast shadows',
+      defaultValue: true,
     },
     wireframe: {
-      control: { type: "boolean" },
-      description: "Show wireframe",
-      defaultValue: false
-    }
-  }
+      control: { type: 'boolean' },
+      description: 'Show wireframe',
+      defaultValue: false,
+    },
+  },
 };
 
 export function SphereStory(args: any = {}): React.ReactElement {
-  const { 
+  const {
     autoRotate = true,
-    color = "gold",
-    hoverColor = "red",
+    color = 'gold',
+    hoverColor = 'red',
     hoverable = true,
     radius = 1,
     widthSegments = 32,
@@ -133,10 +133,10 @@ export function SphereStory(args: any = {}): React.ReactElement {
     scale = [1, 1, 1],
     rotation = [0, 0, 0],
     opacity = 1,
-    side = "double",
-    materialType = "physical",
+    side = 'double',
+    materialType = 'physical',
     castShadow = true,
-    wireframe = false
+    wireframe = false,
   } = args || {};
 
   return (
@@ -167,4 +167,4 @@ export function SphereStory(args: any = {}): React.ReactElement {
   );
 }
 
-SphereStory.storyName = "Sphere";
+SphereStory.storyName = 'Sphere';
