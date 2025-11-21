@@ -19,7 +19,6 @@ import {
 import { useViewContext } from '../utils/hooks';
 import { objectToArray, filterArrayLength, toQuaternion } from '../utils/util';
 import { performanceStart, performanceEnd } from '../utils/performance';
-// import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 
 const { useState, useRef, useEffect, useMemo, useCallback, forwardRef, memo } =
   React;
@@ -435,9 +434,14 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
           tex[prop] = value;
           return null;
         });
+        tex.colorSpace = THREE.SRGBColorSpace;
         return tex;
       }
 
+      // Set color space to sRGB if not set
+      if (map?.colorSpace == THREE.NoColorSpace) {
+        map.colorSpace = THREE.SRGBColorSpace;
+      }
       return map;
     },
     [map, mapProps, _textureURL]

@@ -41,9 +41,9 @@ export default {
       description: 'Text size',
       defaultValue: 1,
     },
-    height: {
+    depth: {
       control: { type: 'number', min: 0.001, max: 0.1, step: 0.001 },
-      description: 'Text height',
+      description: 'Text depth',
       defaultValue: 0.01,
     },
     align: {
@@ -138,7 +138,7 @@ export function TextStory(args: any = {}): React.ReactElement {
     fontName = 'helvetiker',
     fontFile = '',
     size = 1,
-    height = 0.01,
+    depth = 0.01,
     align = 'bottom-left',
     curveSegments = 12,
     position = [0, 0, 0],
@@ -168,7 +168,7 @@ export function TextStory(args: any = {}): React.ReactElement {
         fontName={fontName}
         fontFile={fontFile}
         size={size}
-        height={height}
+        depth={depth}
         align={finalAlign}
         curveSegments={curveSegments}
         position={position}

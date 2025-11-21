@@ -100,7 +100,7 @@ const SamplePlatter = (args: any = {}): React.ReactElement => {
         hoverColor="red"
         wireframe={false}
         size={1}
-        height={0.2}
+        depth={0.2}
         animation={spinText}
         state={{ r: 0 }}
       />

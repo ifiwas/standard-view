@@ -1,10 +1,10 @@
 // Axis.tsx
-import * as React from "react";
-import * as THREE from "three";
-import Group, { GroupProps, generateGroupProps } from "./Group";
-import Cylinder from "../primitives/Cylinder";
-import Sphere from "../primitives/Sphere";
-import Text from "../primitives/Text";
+import * as React from 'react';
+import * as THREE from 'three';
+import Group, { GroupProps, generateGroupProps } from './Group';
+import Cylinder from '../primitives/Cylinder';
+import Sphere from '../primitives/Sphere';
+import Text from '../primitives/Text';
 
 const { useMemo, memo } = React;
 
@@ -20,7 +20,7 @@ interface AxisProps extends GroupProps {
   yLabel?: string;
   zLabel?: string;
   labelSize?: number;
-  labelHeight?: number;
+  labelDepth?: number;
   labelRotation?: Array<number>;
   thickness?: number;
 }
@@ -42,15 +42,15 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
     x = [1, 0, 0],
     y = [0, 1, 0],
     z = [0, 0, 1],
-    xColor = "red",
-    yColor = "blue",
-    zColor = "lime",
-    labelColor = "gray",
-    xLabel = "x",
-    yLabel = "y",
-    zLabel = "z",
+    xColor = 'red',
+    yColor = 'blue',
+    zColor = 'lime',
+    labelColor = 'gray',
+    xLabel = 'x',
+    yLabel = 'y',
+    zLabel = 'z',
     labelSize = 0.2,
-    labelHeight = 0.02,
+    labelDepth = 0.02,
     labelRotation = [0, 0, 0],
     thickness = 0.1,
     children,
@@ -133,7 +133,7 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
       <Text
         position={offsetX}
         size={labelSize}
-        height={labelHeight}
+        depth={labelDepth}
         text={xLabel}
         color={labelColor}
         billboard
@@ -141,7 +141,7 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
       <Text
         position={offsetY}
         size={labelSize}
-        height={labelHeight}
+        depth={labelDepth}
         text={yLabel}
         color={labelColor}
         billboard
@@ -149,7 +149,7 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
       <Text
         position={offsetZ}
         size={labelSize}
-        height={labelHeight}
+        depth={labelDepth}
         text={zLabel}
         color={labelColor}
         billboard
@@ -159,5 +159,5 @@ const Axis: React.FunctionComponent<AxisProps> = function Axis(props) {
 };
 
 const AxisMemo = memo(Axis);
-AxisMemo.displayName = "Axis";
+AxisMemo.displayName = 'Axis';
 export default AxisMemo;
