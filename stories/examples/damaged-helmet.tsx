@@ -1,6 +1,7 @@
 // damaged-helmet.tsx
 import React from 'react';
 import * as THREE from 'three';
+import { STORY_STYLE } from '../utils/common';
 
 // standard-view
 import { View3D, GLTF } from '../../src';
@@ -22,7 +23,7 @@ const DamagedHelmet = (args: any = {}): React.ReactElement => {
         fov: 45,
       }}
       orbitControls
-      style={{ height: 'stretch', width: 'stretch', minHeight: '80vh' }}
+      style={STORY_STYLE}
       controls={{ autoRotate }}
       backgroundEquirectangularRGBEURL={RGBE ? background : undefined}
       backgroundEquirectangularTextureURL={background}

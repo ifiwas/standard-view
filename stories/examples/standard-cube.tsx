@@ -4,6 +4,7 @@ import React from 'react';
 // standard-view
 import View3D from '../../src/views/View3D';
 import Box from '../../src/primitives/Box';
+import { STORY_STYLE } from '../utils/common';
 
 const StandardCube = (args: any = {}): React.ReactElement => {
   const { autoRotate, spinSpeed, scale } = args || {};
@@ -23,13 +24,7 @@ const StandardCube = (args: any = {}): React.ReactElement => {
   return (
     <div className="App">
       Standard Cube
-      <View3D
-        style={{
-          height: 'stretch',
-          width: 'stretch',
-          minHeight: '80vh',
-        }}
-      >
+      <View3D style={STORY_STYLE}>
         <Box
           textureURL="/standard-cube/sc.jpg"
           color="white"

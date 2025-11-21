@@ -1,70 +1,11 @@
 // mouse-events.tsx
-import React, { useState, useMemo, useRef, memo } from "react";
+import React, { useState, useMemo, useRef, memo } from 'react';
 
 // standard-view
-import View3D from "../../src/views/View3D";
-import Label from "../../src/primitives/Label";
-import { STORY_STYLE } from "../utils/common";
-import { RGBStringToNumber, numberToRGBString } from "../../src/utils/util";
-
-export default {
-  title: "Events/Mouse Events",
-  parameters: {
-    docs: {
-      description: {
-        component: "Demonstrates various mouse event handlers"
-      }
-    }
-  },
-  argTypes: {
-    onClick: {
-      control: { type: "boolean" },
-      description: "Enable click events",
-      defaultValue: true
-    },
-    onDoubleClick: {
-      control: { type: "boolean" },
-      description: "Enable double click events",
-      defaultValue: true
-    },
-    onPointerDown: {
-      control: { type: "boolean" },
-      description: "Enable pointer down events",
-      defaultValue: true
-    },
-    onPointerUp: {
-      control: { type: "boolean" },
-      description: "Enable pointer up events",
-      defaultValue: true
-    },
-    onPointerOver: {
-      control: { type: "boolean" },
-      description: "Enable pointer over events",
-      defaultValue: true
-    },
-    onPointerOut: {
-      control: { type: "boolean" },
-      description: "Enable pointer out events",
-      defaultValue: true
-    },
-    onPointerMove: {
-      control: { type: "boolean" },
-      description: "Enable pointer move events",
-      defaultValue: true
-    },
-    onWheel: {
-      control: { type: "boolean" },
-      description: "Enable wheel events",
-      defaultValue: true
-    },
-    ignoreMouseEvents: {
-      control: { type: "boolean" },
-      description: "Ignore all mouse events",
-      defaultValue: false
-    }
-  }
-};
-
+import View3D from '../../src/views/View3D';
+import Label from '../../src/primitives/Label';
+import { STORY_STYLE } from '../utils/common';
+import { RGBStringToNumber, numberToRGBString } from '../../src/utils/util';
 interface MouseEventsProps {
   onClickToggle: boolean;
   onDoubleClickToggle: boolean;
@@ -86,7 +27,7 @@ const MouseEventsComponent = memo(function MouseEvents({
   onPointerOutToggle,
   onPointerMoveToggle,
   onWheelToggle,
-  ignoreMouseEventsToggle
+  ignoreMouseEventsToggle,
 }: MouseEventsProps) {
   // Click
   const [clickCount, setClickCount] = useState(0);
@@ -99,10 +40,10 @@ const MouseEventsComponent = memo(function MouseEvents({
   );
 
   // Hover
-  const [hoverText, setHoverText] = useState("Hover");
+  const [hoverText, setHoverText] = useState('Hover');
 
   // Move
-  const [moveColor, setMoveColor] = useState("RGB(0, 0, 255)");
+  const [moveColor, setMoveColor] = useState('RGB(0, 0, 255)');
   function updateRainbow(rainbow, setRainbow) {
     let { r, g, b } = RGBStringToNumber(rainbow);
     r = (r + 1) % 256;
@@ -112,23 +53,23 @@ const MouseEventsComponent = memo(function MouseEvents({
   }
 
   // Up Down
-  const [upDownText, setUpDownText] = useState("Click");
+  const [upDownText, setUpDownText] = useState('Click');
 
   // Wheel
-  const [wheelColor, setWheelColor] = useState("RGB(0, 255, 0)");
+  const [wheelColor, setWheelColor] = useState('RGB(0, 255, 0)');
 
   // Custom
   const lastCustomActivity = useRef(Date.now());
   const [customClickCount, setCustomClickCount] = useState(0);
   const [customDoubleClickCount, setCustomDoubleClickCount] = useState(0);
-  const [customText, setCustomText] = useState("Custom");
-  const [customColor, setCustomColor] = useState("RGB(0, 0, 0)");
+  const [customText, setCustomText] = useState('Custom');
+  const [customColor, setCustomColor] = useState('RGB(0, 0, 0)');
   function customReset() {
     lastCustomActivity.current = Date.now();
     setTimeout(() => {
       if (Date.now() - lastCustomActivity.current >= 5000) {
-        setCustomText("Custom");
-        setCustomColor("RGB(0, 0, 0)");
+        setCustomText('Custom');
+        setCustomColor('RGB(0, 0, 0)');
       }
     }, 5000);
   }
@@ -153,8 +94,8 @@ const MouseEventsComponent = memo(function MouseEvents({
         text={hoverText}
         textColor="black"
         backgroundColor="orange"
-        onPointerOver={() => setHoverText("Over")}
-        onPointerOut={() => setHoverText("Out")}
+        onPointerOver={() => setHoverText('Over')}
+        onPointerOut={() => setHoverText('Out')}
       />
       {/* Up Down Test */}
       <Label
@@ -163,8 +104,8 @@ const MouseEventsComponent = memo(function MouseEvents({
         text={upDownText}
         textColor="black"
         backgroundColor="yellow"
-        onPointerDown={() => setUpDownText("Down")}
-        onPointerUp={() => setUpDownText("Up")}
+        onPointerDown={() => setUpDownText('Down')}
+        onPointerUp={() => setUpDownText('Up')}
       />
       {/* Wheel Test */}
       <Label
@@ -213,7 +154,7 @@ const MouseEventsComponent = memo(function MouseEvents({
         onPointerDown={
           onPointerDownToggle
             ? () => {
-                setCustomText("Down");
+                setCustomText('Down');
                 customReset();
               }
             : undefined
@@ -221,18 +162,18 @@ const MouseEventsComponent = memo(function MouseEvents({
         onPointerUp={
           onPointerUpToggle
             ? () => {
-                setCustomText("Up");
+                setCustomText('Up');
                 customReset();
               }
             : undefined
         }
         onPointerOver={
-          onPointerOverToggle ? () => setCustomText("Over") : undefined
+          onPointerOverToggle ? () => setCustomText('Over') : undefined
         }
         onPointerOut={
           onPointerOutToggle
             ? () => {
-                setCustomText("Out");
+                setCustomText('Out');
                 customReset();
               }
             : undefined
@@ -240,7 +181,7 @@ const MouseEventsComponent = memo(function MouseEvents({
         onPointerMove={
           onPointerMoveToggle
             ? () => {
-                setCustomText("Move");
+                setCustomText('Move');
                 updateRainbow(customColor, setCustomColor);
                 customReset();
               }
@@ -249,7 +190,7 @@ const MouseEventsComponent = memo(function MouseEvents({
         onWheel={
           onWheelToggle
             ? () => {
-                setCustomText("Wheel");
+                setCustomText('Wheel');
                 updateRainbow(customColor, setCustomColor);
                 customReset();
               }
@@ -261,7 +202,7 @@ const MouseEventsComponent = memo(function MouseEvents({
   );
 });
 
-export function MouseEventsStory(args: any = {}): React.ReactElement {
+const MouseEvents = (args: any = {}): React.ReactElement => {
   const {
     onClick = true,
     onDoubleClick = true,
@@ -271,7 +212,7 @@ export function MouseEventsStory(args: any = {}): React.ReactElement {
     onPointerOut = true,
     onPointerMove = true,
     onWheel = true,
-    ignoreMouseEvents = false
+    ignoreMouseEvents = false,
   } = args || {};
 
   const mouseEventStoryProps: MouseEventsProps = {
@@ -283,10 +224,70 @@ export function MouseEventsStory(args: any = {}): React.ReactElement {
     onPointerOutToggle: onPointerOut,
     onPointerMoveToggle: onPointerMove,
     onWheelToggle: onWheel,
-    ignoreMouseEventsToggle: ignoreMouseEvents
+    ignoreMouseEventsToggle: ignoreMouseEvents,
   };
 
   return <MouseEventsComponent {...mouseEventStoryProps} />;
-}
+};
 
-MouseEventsStory.storyName = "Mouse Events";
+MouseEvents.args = {
+  onClick: true,
+  onDoubleClick: true,
+  onPointerDown: true,
+  onPointerUp: true,
+  onPointerOver: true,
+  onPointerOut: true,
+  onPointerMove: true,
+  onWheel: true,
+  ignoreMouseEvents: false,
+};
+
+MouseEvents.argTypes = {
+  onClick: {
+    control: { type: 'boolean' },
+    description: 'Enable click events',
+    defaultValue: true,
+  },
+  onDoubleClick: {
+    control: { type: 'boolean' },
+    description: 'Enable double click events',
+    defaultValue: true,
+  },
+  onPointerDown: {
+    control: { type: 'boolean' },
+    description: 'Enable pointer down events',
+    defaultValue: true,
+  },
+  onPointerUp: {
+    control: { type: 'boolean' },
+    description: 'Enable pointer up events',
+    defaultValue: true,
+  },
+  onPointerOver: {
+    control: { type: 'boolean' },
+    description: 'Enable pointer over events',
+    defaultValue: true,
+  },
+  onPointerOut: {
+    control: { type: 'boolean' },
+    description: 'Enable pointer out events',
+    defaultValue: true,
+  },
+  onPointerMove: {
+    control: { type: 'boolean' },
+    description: 'Enable pointer move events',
+    defaultValue: true,
+  },
+  onWheel: {
+    control: { type: 'boolean' },
+    description: 'Enable wheel events',
+    defaultValue: true,
+  },
+  ignoreMouseEvents: {
+    control: { type: 'boolean' },
+    description: 'Ignore all mouse events',
+    defaultValue: false,
+  },
+};
+
+export default MouseEvents;

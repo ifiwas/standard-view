@@ -23,21 +23,17 @@ export const KNOB_GROUP = {
 // ----------------------//
 // -----   View3D   -----//
 // ----------------------//
+export const STORY_STYLE = {
+  height: '100vh',
+  width: '100vw',
+  minHeight: '80vh',
+};
+
 export const view3DProps = {
   orbitControls: true,
   camera: { position: [0, 4, 6] },
   shadowMapEnabled: true,
-  style: {
-    height: '100vh',
-    width: '100vw',
-    minHeight: '80vh',
-  },
-};
-
-export const STORY_STYLE = {
-  height: 'stretch',
-  width: 'stretch',
-  minHeight: '80vh',
+  style: STORY_STYLE,
 };
 
 // --------------------------//

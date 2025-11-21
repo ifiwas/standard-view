@@ -1,6 +1,6 @@
 // sample-platter.tsx
 import React from 'react';
-import { view3DProps } from '../utils/common';
+import { STORY_STYLE } from '../utils/common';
 
 // standard-view
 import {
@@ -73,7 +73,6 @@ const SamplePlatter = (args: any = {}): React.ReactElement => {
           start={[0, 1, 0]}
           end={[0, 2.15, 0]}
           radius={0.2}
-          color="white"
           textureURL="/sample-platter/wood.jpg"
         />
       </Group>
@@ -141,11 +140,7 @@ const SamplePlatter = (args: any = {}): React.ReactElement => {
       orbitControls
       camera={{ position: cameraPosition }}
       controls={{ autoRotate }}
-      style={{
-        height: '100vh',
-        width: '100vw',
-        minHeight: '80vh',
-      }}
+      style={STORY_STYLE}
     >
       <Logo />
       <Paddle />

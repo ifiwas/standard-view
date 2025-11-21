@@ -19,6 +19,7 @@ import {
 import { useViewContext } from '../utils/hooks';
 import { objectToArray, filterArrayLength, toQuaternion } from '../utils/util';
 import { performanceStart, performanceEnd } from '../utils/performance';
+// import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 
 const { useState, useRef, useEffect, useMemo, useCallback, forwardRef, memo } =
   React;
@@ -391,6 +392,12 @@ const Mesh: React.FunctionComponent<MeshProps> = forwardRef<
   );
 
   // Color
+
+  // Prevent DEFAULT_COLOR blend into texture with given color
+  if (textureURL && color == DEFAULT_COLOR) {
+    color = undefined;
+  }
+
   const [_color, setColor] = useState(color);
   useEffect(
     function updateColor() {

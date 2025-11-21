@@ -1,24 +1,24 @@
 // group-events.tsx
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
 // standard-view
-import View3D from "../../src/views/View3D";
-import Label from "../../src/primitives/Label";
-import Sphere from "../../src/primitives/Sphere";
-import Text from "../../src/primitives/Text";
-import Box from "../../src/primitives/Box";
-import Group from "../../src/groups/Group";
-import { STORY_STYLE, spin } from "../utils/common";
+import View3D from '../../src/views/View3D';
+import Label from '../../src/primitives/Label';
+import Sphere from '../../src/primitives/Sphere';
+import Text from '../../src/primitives/Text';
+import Box from '../../src/primitives/Box';
+import Group from '../../src/groups/Group';
+import { STORY_STYLE, spin } from '../utils/common';
 
 const GroupEventsComponent = memo(function GroupEvents({
-  customColor1 = "cyan",
-  customHoverColor1 = "yellow",
+  customColor1 = 'cyan',
+  customHoverColor1 = 'yellow',
   customMousePropagation1 = false,
   customIgnoreMouseEvents1 = false,
-  customColor2 = "orange",
-  customHoverColor2 = "yellow",
+  customColor2 = 'orange',
+  customHoverColor2 = 'yellow',
   customMousePropagation2 = false,
-  customIgnoreMouseEvents2 = false
+  customIgnoreMouseEvents2 = false,
 }: any) {
   function InnerBox(): React.ReactNode {
     return (
@@ -268,69 +268,16 @@ const GroupEventsComponent = memo(function GroupEvents({
   );
 });
 
-export default {
-  title: "Events/Group Events",
-  parameters: {
-    docs: {
-      description: {
-        component: "Demonstrates group event handling and mouse propagation"
-      }
-    }
-  },
-  argTypes: {
-    customColor1: {
-      control: { type: "color" },
-      description: "Custom color 1",
-      defaultValue: "cyan"
-    },
-    customHoverColor1: {
-      control: { type: "color" },
-      description: "Custom hover color 1",
-      defaultValue: "yellow"
-    },
-    customMousePropagation1: {
-      control: { type: "boolean" },
-      description: "Custom mouse propagation 1",
-      defaultValue: false
-    },
-    customIgnoreMouseEvents1: {
-      control: { type: "boolean" },
-      description: "Custom ignore mouse events 1",
-      defaultValue: false
-    },
-    customColor2: {
-      control: { type: "color" },
-      description: "Custom color 2",
-      defaultValue: "orange"
-    },
-    customHoverColor2: {
-      control: { type: "color" },
-      description: "Custom hover color 2",
-      defaultValue: "yellow"
-    },
-    customMousePropagation2: {
-      control: { type: "boolean" },
-      description: "Custom mouse propagation 2",
-      defaultValue: false
-    },
-    customIgnoreMouseEvents2: {
-      control: { type: "boolean" },
-      description: "Custom ignore mouse events 2",
-      defaultValue: false
-    }
-  }
-};
-
-export function GroupEventsStory(args: any = {}): React.ReactElement {
-  const { 
-    customColor1 = "cyan",
-    customHoverColor1 = "yellow",
+const GroupEvents = (args: any = {}): React.ReactElement => {
+  const {
+    customColor1 = 'cyan',
+    customHoverColor1 = 'yellow',
     customMousePropagation1 = false,
     customIgnoreMouseEvents1 = false,
-    customColor2 = "orange",
-    customHoverColor2 = "yellow",
+    customColor2 = 'orange',
+    customHoverColor2 = 'yellow',
     customMousePropagation2 = false,
-    customIgnoreMouseEvents2 = false
+    customIgnoreMouseEvents2 = false,
   } = args || {};
 
   return (
@@ -345,6 +292,60 @@ export function GroupEventsStory(args: any = {}): React.ReactElement {
       customIgnoreMouseEvents2={customIgnoreMouseEvents2}
     />
   );
-}
+};
 
-GroupEventsStory.storyName = "Group Events";
+GroupEvents.args = {
+  customColor1: 'cyan',
+  customHoverColor1: 'yellow',
+  customMousePropagation1: false,
+  customIgnoreMouseEvents1: false,
+  customColor2: 'orange',
+  customHoverColor2: 'yellow',
+  customMousePropagation2: false,
+  customIgnoreMouseEvents2: false,
+};
+
+GroupEvents.argTypes = {
+  customColor1: {
+    control: { type: 'color' },
+    description: 'Custom color 1',
+    defaultValue: 'cyan',
+  },
+  customHoverColor1: {
+    control: { type: 'color' },
+    description: 'Custom hover color 1',
+    defaultValue: 'yellow',
+  },
+  customMousePropagation1: {
+    control: { type: 'boolean' },
+    description: 'Custom mouse propagation 1',
+    defaultValue: false,
+  },
+  customIgnoreMouseEvents1: {
+    control: { type: 'boolean' },
+    description: 'Custom ignore mouse events 1',
+    defaultValue: false,
+  },
+  customColor2: {
+    control: { type: 'color' },
+    description: 'Custom color 2',
+    defaultValue: 'orange',
+  },
+  customHoverColor2: {
+    control: { type: 'color' },
+    description: 'Custom hover color 2',
+    defaultValue: 'yellow',
+  },
+  customMousePropagation2: {
+    control: { type: 'boolean' },
+    description: 'Custom mouse propagation 2',
+    defaultValue: false,
+  },
+  customIgnoreMouseEvents2: {
+    control: { type: 'boolean' },
+    description: 'Custom ignore mouse events 2',
+    defaultValue: false,
+  },
+};
+
+export default GroupEvents;
