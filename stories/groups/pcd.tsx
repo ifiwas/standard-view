@@ -4,6 +4,7 @@ import React from 'react';
 // standard-view
 import { View3D, PCD } from '../../src';
 import { DEFAULT_NORMAL } from '../../src/utils/constants';
+import { STORY_STYLE } from '../utils/common';
 
 function PCDComponent({
   autoRotate,
@@ -25,7 +26,7 @@ function PCDComponent({
         up: [0, -1, 0],
       }}
       orbitControls
-      style={{ height: 'stretch', width: 'stretch', minHeight: '80vh' }}
+      style={STORY_STYLE}
       controls={{ autoRotate }}
     >
       <PCD

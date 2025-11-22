@@ -1,67 +1,20 @@
 // point-light.tsx
-import React from "react";
-import { view3DProps, Ground, Balls } from "../utils/common";
+import React from 'react';
+import { view3DProps, Ground, Balls } from '../utils/common';
 
 // standard-view
-import { View3D, PointLight } from "../../src";
+import { View3D, PointLight } from '../../src';
 
-export default {
-  title: "Lights/PointLight",
-  parameters: {
-    docs: {
-      description: {
-        component: "Point light provides omnidirectional illumination from a single point"
-      }
-    }
-  },
-  argTypes: {
-    autoRotate: {
-      control: { type: "boolean" },
-      description: "Enable auto rotation",
-      defaultValue: true
-    },
-    color: {
-      control: { type: "color" },
-      description: "Light color",
-      defaultValue: "white"
-    },
-    position: {
-      control: { type: "object" },
-      description: "Light position",
-      defaultValue: [2, 4, 2]
-    },
-    intensity: {
-      control: { type: "number", min: 0, max: 5, step: 0.1 },
-      description: "Light intensity",
-      defaultValue: 1
-    },
-    distance: {
-      control: { type: "number", min: 0, max: 1000, step: 10 },
-      description: "Light distance",
-      defaultValue: 300
-    },
-    castShadow: {
-      control: { type: "boolean" },
-      description: "Enable shadow casting",
-      defaultValue: true
-    },
-    helper: {
-      control: { type: "boolean" },
-      description: "Show light helper",
-      defaultValue: true
-    }
-  }
-};
-
-export function PointLightStory(args: any = {}): React.ReactElement {
-  const { 
-    autoRotate = true, 
-    color = "white", 
-    position = [2, 4, 2], 
-    intensity = 1, 
-    distance = 300, 
-    castShadow = true, 
-    helper = true 
+function PointLightStory(args: any = {}): React.ReactElement {
+  const {
+    autoRotate = true,
+    color = 'white',
+    position = [2, 4, 2],
+    intensity = 50,
+    distance = 100,
+    decay = 2,
+    castShadow = true,
+    helper = true,
   } = args || {};
 
   return (
@@ -73,6 +26,7 @@ export function PointLightStory(args: any = {}): React.ReactElement {
         color={color}
         intensity={intensity}
         distance={distance}
+        decay={decay}
         castShadow={castShadow}
         helper={helper}
       />
@@ -80,4 +34,58 @@ export function PointLightStory(args: any = {}): React.ReactElement {
   );
 }
 
-PointLightStory.storyName = "PointLight";
+PointLightStory.args = {
+  autoRotate: true,
+  color: 'white',
+  position: [2, 4, 2],
+  intensity: 50,
+  decay: 2,
+  distance: 100,
+  castShadow: true,
+  helper: true,
+};
+
+PointLightStory.argTypes = {
+  autoRotate: {
+    control: { type: 'boolean' },
+    description: 'Enable auto rotation',
+    defaultValue: true,
+  },
+  color: {
+    control: { type: 'color' },
+    description: 'Light color',
+    defaultValue: 'white',
+  },
+  position: {
+    control: { type: 'object' },
+    description: 'Light position',
+    defaultValue: [2, 4, 2],
+  },
+  intensity: {
+    control: { type: 'number', min: 0, max: 100, step: 10 },
+    description: 'Light intensity',
+    defaultValue: 50,
+  },
+  decay: {
+    control: { type: 'number', min: 0, max: 100, step: 10 },
+    description: 'Light decay',
+    defaultValue: 2,
+  },
+  distance: {
+    control: { type: 'number', min: 0, max: 1000, step: 10 },
+    description: 'Light distance',
+    defaultValue: 100,
+  },
+  castShadow: {
+    control: { type: 'boolean' },
+    description: 'Enable shadow casting',
+    defaultValue: true,
+  },
+  helper: {
+    control: { type: 'boolean' },
+    description: 'Show light helper',
+    defaultValue: true,
+  },
+};
+
+export default PointLightStory;

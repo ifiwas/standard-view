@@ -203,8 +203,14 @@ export function Light({
 }: any): React.ReactElement {
   return (
     <>
-      <AmbientLight intensity={0.3} />
-      <DirectionalLight castShadow position={position} {...otherProps} />
+      <AmbientLight intensity={2} />
+      <DirectionalLight
+        castShadow
+        shadowAutoUpdate
+        position={position}
+        intensity={2}
+        {...otherProps}
+      />
     </>
   );
 }

@@ -45,10 +45,10 @@ function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
       <Ground color="white" materialType="phong" />
 
       {/* Lights */}
-      <AmbientLight intensity={0.3} />
+      <AmbientLight intensity={2} />
       <SpotLight
         position={[-10, 20, 15]}
-        intensity={0.7}
+        intensity={20}
         decay={0.3}
         angle={Math.PI * 0.8}
         penumbra={0.8}

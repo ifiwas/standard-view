@@ -22,7 +22,7 @@ function GLTFStory(args: any = {}): React.ReactElement {
     castShadow = true,
     receiveShadow = true,
     visible = true,
-    ambientIntensity = 0.5,
+    ambientIntensity = 2,
   } = args || {};
 
   return (
@@ -44,6 +44,7 @@ function GLTFStory(args: any = {}): React.ReactElement {
       <SpotLight
         position={[200, 900, 200]}
         distance={10000}
+        intensity={1000}
         castShadow
         shadowAutoUpdate
       />
@@ -82,7 +83,7 @@ GLTFStory.args = {
   castShadow: true,
   receiveShadow: true,
   visible: true,
-  ambientIntensity: 0.5,
+  ambientIntensity: 2,
 };
 
 GLTFStory.argTypes = {
@@ -154,9 +155,9 @@ GLTFStory.argTypes = {
     defaultValue: true,
   },
   ambientIntensity: {
-    control: { type: 'number', min: 0, max: 2, step: 0.1 },
+    control: { type: 'number', min: 0, max: 5, step: 1 },
     description: 'Ambient light intensity',
-    defaultValue: 0.5,
+    defaultValue: 2,
   },
 };
 

@@ -30,8 +30,8 @@ const Rotation = (args: any = {}): React.ReactElement => {
       {...view3DProps}
       camera={{ fov: 75, position: [3, 4, 4], target: [0, 3, 0] }}
     >
-      <DirectionalLight castShadow position={[3, 10, 3]} />
-      <AmbientLight intensity={0.5} />
+      <DirectionalLight castShadow position={[3, 10, 3]} intensity={3} />
+      <AmbientLight intensity={2} />
       <Axis />
       <Group
         position={[0, 3, 0]}

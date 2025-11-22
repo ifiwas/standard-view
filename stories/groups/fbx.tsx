@@ -44,14 +44,14 @@ function FBXStory(args: any = {}): React.ReactElement {
       gl={{ outputEncoding: THREE.SRGBColorSpace }}
     >
       {/* Lights */}
-      <SpotLight intensity={0.7} color="cyan" position={[0, 100, 100]} />
-      <SpotLight intensity={0.4} color="cyan" position={[0, 100, -100]} />
-      <SpotLight intensity={0.7} color="snow" position={[0, 100, 100]} />
-      <SpotLight intensity={0.4} color="snow" position={[0, 100, -100]} />
-      <SpotLight intensity={0.6} color="tan" position={[0, 100, -100]} />
-      <SpotLight intensity={0.3} color="tan" position={[0, 100, 100]} />
-      <DirectionalLight intensity={0.3} position={[0, 1, 0]} />
-      <AmbientLight intensity={0.2} />
+      <SpotLight intensity={200} color="cyan" position={[0, 100, 100]} />
+      <SpotLight intensity={100} color="cyan" position={[0, 100, -100]} />
+      <SpotLight intensity={200} color="snow" position={[0, 100, 100]} />
+      <SpotLight intensity={100} color="snow" position={[0, 100, -100]} />
+      <SpotLight intensity={150} color="tan" position={[0, 100, -100]} />
+      <SpotLight intensity={150} color="tan" position={[0, 100, 100]} />
+      <DirectionalLight intensity={5} position={[0, 1, 0]} />
+      <AmbientLight intensity={2} />
 
       {/* FBX */}
       <FBX
