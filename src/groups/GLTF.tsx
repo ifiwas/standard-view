@@ -1,16 +1,16 @@
 // GLTF.tsx
-import * as React from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
-import Label from "../primitives/Label";
-import Group, { GroupProps } from "./Group";
-import { useViewContext } from "../utils/hooks";
+import * as React from 'react';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import Label from '../primitives/Label';
+import Group, { GroupProps } from './Group';
+import { useViewContext } from '../utils/hooks';
 
 const { useEffect, useMemo, useRef, memo } = React;
 
 const DRACO_DECODER_SOURCE =
-  "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/";
+  'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/jsm/libs/draco/';
 
 interface GLTFProps extends GroupProps {
   gltfPath?: string;
@@ -33,7 +33,7 @@ function updateAllMaterials(
 
   _children.map(object => {
     // Recurse into Groups
-    if (object.constructor.name === "Group" && object.children) {
+    if (object.constructor.name === 'Group' && object.children) {
       updateAllMaterials(color, object.children, materialProps);
     }
 
@@ -77,12 +77,12 @@ function loadGLTF({
   envMap,
   castShadow,
   receiveShadow,
-  materialProps
+  materialProps,
 }: LoadGLTFProps): void {
   // No GLTF
   if (gltfURL == null) {
     /* eslint-disable no-console */
-    console.warn("[GLTF] No gltfURL");
+    console.warn('[GLTF] No gltfURL');
     /* eslint-enable no-console */
     return;
   }
@@ -129,7 +129,7 @@ function loadGLTF({
 }
 
 const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
-  gltfPath = "",
+  gltfPath = '',
   gltfURL,
   dracoDecoderPath = DRACO_DECODER_SOURCE,
   view3DEnvMap = false,
@@ -150,13 +150,13 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
 
       // Acceptable Material Props
       const materialPropsKeys = [
-        "color",
-        "wireframe",
-        "opacity",
-        "transparent",
-        "side",
-        "depthWrite",
-        "depthTest"
+        'color',
+        'wireframe',
+        'opacity',
+        'transparent',
+        'side',
+        'depthWrite',
+        'depthTest',
       ];
 
       // Extract Acceptable Props
@@ -189,7 +189,7 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
   // Loading Text
   const loadingText = useMemo(
     function updateLoadText() {
-      return gltfURL || "No gltfURL";
+      return gltfURL || 'No gltfURL';
     },
     [gltfURL]
   );
@@ -206,7 +206,7 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
           envMap: _envMap,
           castShadow,
           receiveShadow,
-          materialProps
+          materialProps,
         });
       }
     },
@@ -218,7 +218,7 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
       _envMap,
       castShadow,
       receiveShadow,
-      materialProps
+      materialProps,
     ]
   );
 
@@ -230,5 +230,5 @@ const GLTF: React.FunctionComponent<GLTFProps> = function GLTF({
 };
 
 const GLTFMemo = memo(GLTF);
-GLTFMemo.displayName = "GLTF";
+GLTFMemo.displayName = 'GLTF';
 export default GLTFMemo;

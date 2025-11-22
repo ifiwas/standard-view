@@ -1,7 +1,6 @@
 // View3D.tsx
 import * as React from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { default as SceneCamera } from './SceneCamera';
 import SetRenderer from './SetRenderer';
 import SetBackground from './SetBackground';
 import SetShadows from './SetShadows';
