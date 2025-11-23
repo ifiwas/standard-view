@@ -37,7 +37,7 @@ function GLTFStory(args: any = {}): React.ReactElement {
       orbitControls
       style={STORY_STYLE}
       controls={{ autoRotate }}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
     >
       {/* Lights */}
       <AmbientLight intensity={ambientIntensity} />

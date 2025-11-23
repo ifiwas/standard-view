@@ -41,7 +41,7 @@ function FBXStory(args: any = {}): React.ReactElement {
       orbitControls
       style={STORY_STYLE}
       controls={{ autoRotate, enableZoom: false }}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
     >
       {/* Lights */}
       <SpotLight intensity={200} color="cyan" position={[0, 100, 100]} />

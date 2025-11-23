@@ -27,7 +27,7 @@ const DamagedHelmet = (args: any = {}): React.ReactElement => {
       controls={{ autoRotate }}
       backgroundEquirectangularRGBEURL={RGBE ? background : undefined}
       backgroundEquirectangularTextureURL={background}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
     >
       <GLTF
         position={position}

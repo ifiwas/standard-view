@@ -25,7 +25,7 @@ function View3DEnvMapStory(args: any = {}): React.ReactElement {
       controls={{ autoRotate }}
       backgroundEquirectangularRGBEURL={RGBE ? background : undefined}
       backgroundEquirectangularTextureURL={background}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
     >
       {lights && <Light />}
       <Balls

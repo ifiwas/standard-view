@@ -38,7 +38,7 @@ function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
       orbitControls
       style={STORY_STYLE}
       controls={{ autoRotate, maxPolarAngle: Math.PI * 0.5 }}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
       backgroundEquirectangularTextureURL="backgrounds/snow-mountains2.jpg"
     >
       {/* Ground */}

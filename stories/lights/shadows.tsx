@@ -46,7 +46,7 @@ function ShadowStory(args: any = {}): React.ReactElement {
       shadowType={shadowType}
       style={STORY_STYLE}
       controls={{ autoRotate }}
-      gl={{ outputEncoding: THREE.SRGBColorSpace }}
+      gl={{ outputColorSpace: THREE.SRGBColorSpace }}
     >
       <Sphere
         position={[-4, 1.25, 1]}
