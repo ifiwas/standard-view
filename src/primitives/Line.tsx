@@ -1,8 +1,8 @@
 // LineSegment.tsx
-import * as React from "react";
-import * as THREE from "three";
-import { EPS } from "../utils/math";
-import { DEFAULT_COLOR } from "../utils/styles";
+import * as React from 'react';
+import * as THREE from 'three';
+import { EPS } from '../utils/math';
+import { DEFAULT_COLOR } from '../utils/styles';
 
 const { useState, useEffect, useMemo, memo } = React;
 export interface LineProps {
@@ -82,19 +82,26 @@ const Line: React.FunctionComponent<LineProps> = function Line({
     [start, end, points]
   );
 
-  // Geometry Component
-  const GeometryComponent = memo(function GeometryComponent() {
-    if (geometry) {
-      // @ts-ignore:2339 property primitive does not exist
-      return <primitive object={geometry} />;
-    }
+  // Memoized BufferGeometry for the line
+  const lineGeometry = useMemo(
+    function createLineGeometry() {
+      if (geometry) {
+        return geometry;
+      }
 
-    return (
-      // @ts-ignore: Property 'geometry' does not exist on type 'JSX.IntrinsicElements'
-      <geometry attach="geometry" vertices={vertices} />
-    );
+      const geom = new THREE.BufferGeometry();
+      geom.setFromPoints(vertices);
+      return geom;
+    },
+    [geometry, vertices]
+  );
+
+  // Geometry Component always uses BufferGeometry
+  const GeometryComponent = memo(function GeometryComponent() {
+    // Always use a BufferGeometry (either provided or generated)
+    // @ts-ignore: property primitive does not exist on IntrinsicElements
+    return <primitive attach="geometry" object={lineGeometry} />;
   });
-  GeometryComponent.displayName = "GeometryComponent";
 
   // Material Props
   const materialProps = useMemo(
@@ -103,16 +110,16 @@ const Line: React.FunctionComponent<LineProps> = function Line({
         material,
         color: _color,
         transparent: transparent != null ? transparent : opacity < 1 - EPS,
-        opacity
+        opacity,
       };
     },
     [material, _color, transparent, opacity]
   );
 
-      return (
-      // @ts-ignore:TS2322 line type clash
-      // @ts-ignore: Type '{ children: any[]; groupMember?: boolean | undefined; onPointerOver: () => void; onPointerOut: () => void; castShadow: boolean; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'
-      <line
+  return (
+    // @ts-ignore:TS2322 line type clash
+    // @ts-ignore: Type '{ children: any[]; groupMember?: boolean | undefined; onPointerOver: () => void; onPointerOut: () => void; castShadow: boolean; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'
+    <line
       onPointerOver={function setHover(): void {
         if (hoverable && hoverColor != null) {
           setColor(hoverColor);
@@ -135,7 +142,7 @@ const Line: React.FunctionComponent<LineProps> = function Line({
 };
 
 const LineMemo = memo(Line);
-LineMemo.displayName = "Line";
+LineMemo.displayName = 'Line';
 export default LineMemo;
 
 type MaterialComponentProps = {
@@ -149,7 +156,7 @@ const MaterialComponent = memo(function MaterialComponent({
   material,
   color,
   transparent,
-  opacity
+  opacity,
 }: MaterialComponentProps) {
   if (material) {
     // @ts-ignore:2339 property primitive does not exist
@@ -166,4 +173,4 @@ const MaterialComponent = memo(function MaterialComponent({
     />
   );
 });
-MaterialComponent.displayName = "MaterialComponent";
+MaterialComponent.displayName = 'MaterialComponent';
