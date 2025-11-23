@@ -1,13 +1,11 @@
 // obj.tsx
-import React, { useState, useCallback } from 'react';
-import Mousetrap from 'mousetrap';
+import React, { useCallback } from 'react';
+import * as THREE from 'three';
 
 // standard-view
 import { View3D, OBJ, AmbientLight, Sphere, SpotLight, Group } from '../../src';
-import { Ground } from '../utils/common';
+import { Ground, STORY_STYLE } from '../utils/common';
 import { DEFAULT_NORMAL } from '../../src/utils/constants';
-import { STORY_STYLE } from '../utils/common';
-import * as THREE from 'three';
 
 function OBJComponent({ autoRotate, ornamentProps }: any): React.ReactNode {
   // Ornament

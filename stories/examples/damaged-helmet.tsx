@@ -1,10 +1,10 @@
 // damaged-helmet.tsx
 import React from 'react';
 import * as THREE from 'three';
-import { STORY_STYLE } from '../utils/common';
 
 // standard-view
 import { View3D, GLTF } from '../../src';
+import { STORY_STYLE } from '../utils/common';
 
 const DamagedHelmet = (args: any = {}): React.ReactElement => {
   const {

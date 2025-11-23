@@ -1,8 +1,8 @@
 // shadows.tsx
 import React from 'react';
+import * as THREE from 'three';
 
 // standard-view
-import * as THREE from 'three';
 import {
   View3D,
   PointLight,
@@ -12,8 +12,7 @@ import {
   Cylinder,
   GLTF,
 } from '../../src';
-import { spin, spinY, Ground } from '../utils/common';
-import { STORY_STYLE } from '../utils/common';
+import { spin, spinY, Ground, STORY_STYLE } from '../utils/common';
 
 function ShadowStory(args: any = {}): React.ReactElement {
   const {

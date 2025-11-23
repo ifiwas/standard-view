@@ -1,6 +1,5 @@
 // sample-platter.tsx
 import React from 'react';
-import { STORY_STYLE } from '../utils/common';
 
 // standard-view
 import {
@@ -13,6 +12,7 @@ import {
   Sphere,
   Text,
 } from '../../src/';
+import { STORY_STYLE } from '../utils/common';
 
 const SamplePlatter = (args: any = {}): React.ReactElement => {
   const { autoRotate, cameraPosition, ballSpeed, spinSpeed } = args || {};

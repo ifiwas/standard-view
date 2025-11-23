@@ -1,11 +1,11 @@
 // gltf.tsx
 import React from 'react';
 import * as THREE from 'three';
-import { STORY_STYLE } from '../utils/common';
 
 // standard-view
 import { View3D, GLTF, AmbientLight, SpotLight } from '../../src';
 import { DEFAULT_NORMAL } from '../../src/utils/constants';
+import { STORY_STYLE } from '../utils/common';
 
 function GLTFStory(args: any = {}): React.ReactElement {
   const {

@@ -1,7 +1,7 @@
 // fbx.tsx
 import React from 'react';
 import * as THREE from 'three';
-import { STORY_STYLE } from '../utils/common';
+
 // standard-view
 import {
   View3D,
@@ -11,6 +11,7 @@ import {
   DirectionalLight,
 } from '../../src';
 import { DEFAULT_NORMAL } from '../../src/utils/constants';
+import { STORY_STYLE } from '../utils/common';
 
 function FBXStory(args: any = {}): React.ReactElement {
   const {
