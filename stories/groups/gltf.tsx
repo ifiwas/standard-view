@@ -118,7 +118,8 @@ GLTFStory.argTypes = {
     defaultValue: 0,
   },
   gltfPath: {
-    control: { type: 'text' },
+    control: { type: 'select' },
+    options: ['gltf/', 'https://threejs.org/examples/models/gltf/'],
     description: 'GLTF file path',
     defaultValue: 'gltf/',
   },
