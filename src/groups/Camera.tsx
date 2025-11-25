@@ -259,32 +259,28 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
   const camera = useMemo(
     function updateCamera() {
       let cam;
-      if (camera) {
-        cam = camera;
-      } else {
-        const _left = left != null ? left : -width * 0.5;
-        const _right = right != null ? right : width * 0.5;
-        const _top = top != null ? top : height * 0.5;
-        const _bottom = bottom != null ? bottom : -height * 0.5;
+      const _left = left != null ? left : -width * 0.5;
+      const _right = right != null ? right : width * 0.5;
+      const _top = top != null ? top : height * 0.5;
+      const _bottom = bottom != null ? bottom : -height * 0.5;
 
-        switch (type) {
-          case 'orthographic':
-            cam = new THREE.OrthographicCamera(
-              _left,
-              _right,
-              _top,
-              _bottom,
-              near,
-              far
-            );
-            break;
-          case 'perspective':
-            cam = new THREE.PerspectiveCamera(fov, aspect, near, far);
-            break;
-          default:
-            /* eslint-disable-next-line no-console */
-            console.warn(`[Camera] Invalid camera type: ${type}`);
-        }
+      switch (type) {
+        case 'orthographic':
+          cam = new THREE.OrthographicCamera(
+            _left,
+            _right,
+            _top,
+            _bottom,
+            near,
+            far
+          );
+          break;
+        case 'perspective':
+          cam = new THREE.PerspectiveCamera(fov, aspect, near, far);
+          break;
+        default:
+          /* eslint-disable-next-line no-console */
+          console.warn(`[Camera] Invalid camera type: ${type}`);
       }
 
       // Camera Extrinsics
@@ -456,7 +452,7 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
           {/* Roll */}
           {/* Camera's Normal is inverse of LookAt */}
           {showRoll && (
-            <>
+            <Group>
               <Arrow head={DEFAULT_UP.map(val => val * 2)} color="yellow" />
               <Arrow
                 head={DEFAULT_UP.map(val => val * 2)}
@@ -479,7 +475,7 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
                 size={0.2}
                 billboard
               />
-            </>
+            </Group>
           )}
         </Group>
         {/* Wireframe */}
@@ -504,7 +500,7 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
         )}
         {/* Up */}
         {showUp && (
-          <>
+          <Group>
             <Arrow
               head={[camera.up.x * 2, camera.up.y * 2, camera.up.z * 2]}
               color="cyan"
@@ -521,11 +517,11 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
               size={camera.up.length() * 0.2}
               billboard
             />
-          </>
+          </Group>
         )}
         {/* Normal */}
         {showNormal && (
-          <>
+          <Group>
             <Arrow head={cameraNormal.map(val => val * 2)} color="lime" />
             <Text
               text="normal"
@@ -535,11 +531,11 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
               size={0.2}
               billboard
             />
-          </>
+          </Group>
         )}
         {/* LookAt */}
         {showLookAt && (
-          <>
+          <Group>
             <Arrow head={cameraLookAt.map(val => val * 2)} color="magenta" />
             <Text
               text="look"
@@ -549,7 +545,7 @@ const Camera: React.FunctionComponent<CameraProps> = function Camera({
               size={0.2}
               billboard
             />
-          </>
+          </Group>
         )}
         {/* Label */}
         {showLabel && (
