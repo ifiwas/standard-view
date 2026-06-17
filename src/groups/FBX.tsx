@@ -1,10 +1,10 @@
 // FBX.tsx
-import React, { useEffect, useMemo, useRef, memo } from "react";
-import * as THREE from "three";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
-import { useViewContext, useFrame } from "../utils/hooks";
-import Group, { GroupProps } from "./Group";
-import { Label } from "../primitives";
+import React, { useEffect, useMemo, useRef, memo } from 'react';
+import * as THREE from 'three';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+import { useViewContext, useFrame } from '../utils/hooks';
+import Group, { GroupProps } from './Group';
+import { Label } from '../primitives';
 
 interface FBXProps extends GroupProps {
   fbxPath?: string;
@@ -27,7 +27,7 @@ function updateAllMaterials(
 
   _children.map(object => {
     // Recurse into Groups
-    if (object.constructor.name === "Group" && object.children) {
+    if (object.constructor.name === 'Group' && object.children) {
       updateAllMaterials(color, object.children, materialProps);
     }
 
@@ -74,12 +74,12 @@ function loadFBX({
   castShadow,
   receiveShadow,
   materialProps,
-  actionIndex = 0
+  actionIndex = 0,
 }: LoadFBXProps): void {
   // No FBX
   if (fbxURL == null) {
     /* eslint-disable no-console */
-    console.warn("[FBX] No fbxURL");
+    console.warn('[FBX] No fbxURL');
     /* eslint-enable no-console */
     return;
   }
@@ -131,7 +131,7 @@ function loadFBX({
 }
 
 const FBX: React.FunctionComponent<FBXProps> = function FBX({
-  fbxPath = "",
+  fbxPath = '',
   fbxURL,
   actionIndex = 0,
   view3DEnvMap = false,
@@ -153,13 +153,13 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
 
       // Acceptable Material Props
       const materialPropsKeys = [
-        "color",
-        "wireframe",
-        "opacity",
-        "transparent",
-        "side",
-        "depthWrite",
-        "depthTest"
+        'color',
+        'wireframe',
+        'opacity',
+        'transparent',
+        'side',
+        'depthWrite',
+        'depthTest',
       ];
 
       // Extract Acceptable Props
@@ -192,7 +192,7 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
   // Loading Text
   const loadingText = useMemo(
     function updateLoadText() {
-      return fbxURL || "No fbxURL";
+      return fbxURL || 'No fbxURL';
     },
     [fbxURL]
   );
@@ -210,7 +210,7 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
           castShadow,
           receiveShadow,
           materialProps,
-          actionIndex
+          actionIndex,
         });
       }
     },
@@ -222,14 +222,14 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
       _envMap,
       castShadow,
       receiveShadow,
-      materialProps
+      materialProps,
     ]
   );
 
   // Animation Mixer Update
-  const clock = new THREE.Clock();
+  const timer = new THREE.Timer();
   useFrame(function updateMixer() {
-    const delta = clock.getDelta();
+    const delta = timer.getDelta();
     if (mixer.current) {
       mixer.current.update(delta);
     }
@@ -243,5 +243,5 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
 };
 
 const FBXMemo = memo(FBX);
-FBXMemo.displayName = "FBX";
+FBXMemo.displayName = 'FBX';
 export default FBXMemo;

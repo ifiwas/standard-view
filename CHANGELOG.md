@@ -1,6 +1,14 @@
 # Changelog
 
-# Unreleased
+# 2.0.1
+
+- 🎉 three.js 0.178.0 --> 0.184.0
+  - 💫 Clock -> Timer in `FBX.tsx`
+- 🧹 Added Peer Dependency @react-three/fiber
+  - `Stats` in `util.tsx`
+  - `Canvas, useThree` in `View3D.tsx`
+- 🧹 Added Peer Dependency @react-three/drei
+  - `PerspectiveCamera, OrthographicCamera` in `SceneCamera.tsx`
 
 # 2.0.0
 

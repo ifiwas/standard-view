@@ -70,7 +70,7 @@
     "@types/node": "^24.0.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/three": "^0.178.0",
+    "@types/three": "^0.184.0",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
     "@vitejs/plugin-react": "^4.0.0",
@@ -104,7 +104,9 @@
   },
   "peerDependencies": {
     "react": "^19",
-    "three": "^0.178.0"
+    "three": "^0.184.0",
+    "@react-three/fiber": "^9.2.0",
+    "@react-three/drei": "^10.5.1"
   },
   "dependencies": {}
 }
