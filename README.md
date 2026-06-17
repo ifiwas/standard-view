@@ -1,17 +1,19 @@
 # Standard View
 
+Forked from @standard/view
+
 # Usage
 
 Install
 
 ```
-$ npm install @standard/view
+$ npm install @ifiwas/standard-view
 ```
 
 Place Views into your React App. For example:
 
 ```
-import { View3D, Box } from '@standard/view';
+import { View3D, Box } from '@ifiwas/standard-view';
 .
 .
 .
@@ -21,32 +23,32 @@ import { View3D, Box } from '@standard/view';
 </View3D>
 ```
 
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/example.png?raw=true" width="250" height="200" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/example.png?raw=true" width="250" height="200" />
 
 For details about valid properties, look at the interfaces named `*Props`, where `*` is the component name, in `src/primitves/` and `src/groups/`.
 
 ## Stories
 
 `yarn storybook` to see stories of each component in `standard-view`.
-You may also visit [Standard View Storybook](https://standard-view.netlify.app/?path=/story) served with netlify.
+You may also visit [Standard View Storybook](https://standard-view.ifiwaslabs.com) served with netlify.
 
 ### Examples
 
 <p align="center">
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/sample-platter.gif?raw=true" width="800" height="400" />
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/standard-cube.gif?raw=true" width="400" height="400" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/sample-platter.gif?raw=true" width="800" height="400" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/standard-cube.gif?raw=true" width="400" height="400" />
 </p>
 
 ## create-react-app to Standard View Project
 
 <p align="center">
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/create-app-to-standard-view.gif?raw=true" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/create-app-to-standard-view.gif?raw=true" />
 </p>
 
 ## Fit to Window
 
 <p align="center">
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/canvas-css.gif?raw=true" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/canvas-css.gif?raw=true" />
 </p>
 
 Set `.App canvas` in css file to adjust Standard View `View3D` canvas.
@@ -54,7 +56,7 @@ Set `.App canvas` in css file to adjust Standard View `View3D` canvas.
 ## Intellisense
 
 <p align="center">
-<img src="https://github.com/standard-ai/standard-view/blob/master/example-gifs/intellisense.gif?raw=true" />
+<img src="https://github.com/ifiwas/standard-view/blob/master/example-gifs/intellisense.gif?raw=true" />
 </p>
 
 For VSCode, press `ctrl + space` to force load intellisense at cursor location.
