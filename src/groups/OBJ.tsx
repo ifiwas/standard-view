@@ -1,12 +1,10 @@
 // OBJ.tsx
 import * as React from "react";
 import * as THREE from "three";
-import PropTypes from "prop-types";
-import exact from "prop-types-exact";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 import Label from "../primitives/Label";
-import Group, { GroupProps, GroupPropTypes } from "./Group";
+import Group, { GroupProps } from "./Group";
 import { useViewContext } from "../utils/hooks";
 
 const { useEffect, useMemo, useRef, memo } = React;
@@ -175,7 +173,7 @@ const OBJ: React.FunctionComponent<OBJProps> = function OBJ({
   receiveShadow = false,
   ...otherProps
 }) {
-  const group = useRef();
+  const group = useRef<THREE.Group | null>(null);
   const { envMap } = useViewContext();
 
   // Material Props
@@ -269,16 +267,6 @@ const OBJ: React.FunctionComponent<OBJProps> = function OBJ({
     </Group>
   );
 };
-
-// -----  PropTypes   ----- //
-OBJ.propTypes = exact({
-  objPath: PropTypes.string,
-  objURL: PropTypes.string,
-  mtlPath: PropTypes.string,
-  mtlURL: PropTypes.string,
-  resourcePath: PropTypes.string,
-  ...GroupPropTypes
-});
 
 const OBJMemo = memo(OBJ);
 OBJMemo.displayName = "OBJ";
