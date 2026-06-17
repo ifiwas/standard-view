@@ -1,14 +1,12 @@
 {
-  "name": "@standard/view",
+  "name": "@ifiwas/standard-view",
   "version": "2.0.0",
   "description": "3D Graphics Library for React Apps",
-  "repository": "standard-ai/standard-view",
+  "repository": "ifiwas/standard-view",
   "license": "MIT",
   "contributors": [
-    "Standard Cognition (https://standard.ai/) <jobs@standard.ai>",
-    "Wasif S. Islam",
-    "Maytee Chinavanichkit",
-    "Francisco Presencia (https://francisco.io/)"
+    "If I Was (https://ifiwaslabs.com/)",
+    "Wasif Islam"
   ],
   "main": "./index.js",
   "scripts": {
@@ -29,6 +27,9 @@
     "storybook": "storybook dev -p 5001"
   },
   "keywords": [
+    "ifiwas",
+    "ifiwaslabs",
+    "ifiwas-standard-view",
     "standard-view",
     "standard-view-core",
     "standard",
