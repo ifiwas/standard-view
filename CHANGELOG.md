@@ -3,6 +3,7 @@
 # 2.0.2
 
 - 🧹 Fixed Timer bug in `FBX.tsx`
+- 🧹 Fixed stale shadows bug
 
 # 2.0.1
 
