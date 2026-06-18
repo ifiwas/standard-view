@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useRef, memo } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import { Timer } from 'three/examples/jsm/misc/Timer.js';
 import { useViewContext, useFrame } from '../utils/hooks';
 import Group, { GroupProps } from './Group';
 import { Label } from '../primitives';
@@ -228,10 +227,14 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
   );
 
   // Animation Mixer Update
-  const timer = useMemo(() => new Timer(), []);
+  // THREE.Clock is part of three core (no addon subpath), so it resolves on
+  // every three version consumers may have -- unlike the example `Timer`,
+  // whose module path differs across three releases. Clock.getDelta() returns
+  // the elapsed time since the previous call, which is exactly what the mixer
+  // needs.
+  const clock = useMemo(() => new THREE.Clock(), []);
   useFrame(function updateMixer() {
-    timer.update();
-    const delta = timer.getDelta();
+    const delta = clock.getDelta();
     if (mixer.current) {
       mixer.current.update(delta);
     }

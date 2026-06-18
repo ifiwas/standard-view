@@ -1,6 +1,6 @@
 {
   "name": "@ifiwas/standard-view",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "3D Graphics Library for React Apps",
   "repository": "ifiwas/standard-view",
   "license": "MIT",
@@ -116,7 +116,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "storybook": "^9.0.16",
-    "three": "^0.178.0",
+    "three": "^0.184.0",
     "ts-jest": "^29.0.0",
     "tslib": "^2.6.0",
     "tsup": "^8.5.1",

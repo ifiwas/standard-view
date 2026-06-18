@@ -1,5 +1,10 @@
 # Changelog
 
+# 2.0.3
+
+- 🧹 Reverted Timer usage to Clock in `FBX.tsx`
+- 🧹 Matched devDep with peerDep of three to prevent Timer bug from resurfacing
+
 # 2.0.2
 
 - 🧹 Fixed Timer bug in `FBX.tsx`
