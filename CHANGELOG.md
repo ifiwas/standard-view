@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.0.2
+
+- 🧹 Fixed Timer bug in `FBX.tsx`
+
 # 2.0.1
 
 - 🎉 three.js 0.178.0 --> 0.184.0

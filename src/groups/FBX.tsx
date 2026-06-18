@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useRef, memo } from 'react';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import { Timer } from 'three/examples/jsm/misc/Timer.js';
 import { useViewContext, useFrame } from '../utils/hooks';
 import Group, { GroupProps } from './Group';
 import { Label } from '../primitives';
@@ -227,8 +228,9 @@ const FBX: React.FunctionComponent<FBXProps> = function FBX({
   );
 
   // Animation Mixer Update
-  const timer = new THREE.Timer();
+  const timer = useMemo(() => new Timer(), []);
   useFrame(function updateMixer() {
+    timer.update();
     const delta = timer.getDelta();
     if (mixer.current) {
       mixer.current.update(delta);
