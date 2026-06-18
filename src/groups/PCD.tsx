@@ -1,7 +1,7 @@
 // PCD.tsx
 import * as React from "react";
 import * as THREE from "three";
-import { PCDLoader } from "three/examples/jsm/loaders/PCDLoader";
+import { PCDLoader } from "three/examples/jsm/loaders/PCDLoader.js";
 import Label from "../primitives/Label";
 import Group, { GroupProps } from "./Group";
 

@@ -1,8 +1,8 @@
 // GLTF.tsx
 import * as React from 'react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import Label from '../primitives/Label';
 import Group, { GroupProps } from './Group';
 import { useViewContext } from '../utils/hooks';

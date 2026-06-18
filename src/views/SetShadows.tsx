@@ -1,7 +1,7 @@
 // SetShadows.tsx
 import * as React from "react";
 import * as THREE from "three";
-import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
 import { useViewContext } from "../utils";
 
 const { useEffect, memo } = React;

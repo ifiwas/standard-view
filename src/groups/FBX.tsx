@@ -1,7 +1,7 @@
 // FBX.tsx
 import React, { useEffect, useMemo, useRef, memo } from 'react';
 import * as THREE from 'three';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { useViewContext, useFrame } from '../utils/hooks';
 import Group, { GroupProps } from './Group';
 import { Label } from '../primitives';

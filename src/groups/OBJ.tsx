@@ -1,8 +1,8 @@
 // OBJ.tsx
 import * as React from "react";
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import Label from "../primitives/Label";
 import Group, { GroupProps } from "./Group";
 import { useViewContext } from "../utils/hooks";

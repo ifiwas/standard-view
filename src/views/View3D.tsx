@@ -17,6 +17,7 @@ import {
   DEFAULT_UP,
 } from '../utils/constants';
 
+// @ts-ignore
 import { version } from '../../package.json';
 
 const { useRef, useEffect, useMemo, memo } = React;

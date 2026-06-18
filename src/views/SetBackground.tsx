@@ -1,7 +1,7 @@
 // SetBackground.tsx
 import * as React from 'react';
 import * as THREE from 'three';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { PMREMGenerator } from 'three';
 import { useViewContext } from '../utils';
 

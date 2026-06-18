@@ -1,9 +1,9 @@
 // SetControls.tsx
 import * as React from 'react';
 import * as THREE from 'three';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { MapControls } from 'three/examples/jsm/controls/MapControls';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { MapControls } from 'three/examples/jsm/controls/MapControls.js';
 import { useFrame, useViewContext } from '../utils/hooks';
 import {
   CONTROLS_TYPES,
