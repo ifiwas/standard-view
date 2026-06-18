@@ -190,11 +190,31 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
   const shadowProps = useMemo(
     function updateShadowProps() {
       return {
-        shadowMapEnabled: shadowMapEnabled || true,
-        shadowType: shadowType || 'type',
+        shadowMapEnabled: shadowMapEnabled ?? true,
+        shadowType: shadowType ?? 'pcfsoft',
       };
     },
     [shadowMapEnabled, shadowType]
+  );
+
+  // @react-three/fiber owns gl.shadowMap via the Canvas `shadows` prop and
+  // re-applies it on every render. If we don't drive it, R3F resets
+  // shadowMap.enabled to false on any re-render and shadows get stuck off.
+  // Map our shadowType onto R3F's shadow presets so R3F stays the single
+  // source of truth.
+  const shadows = useMemo(
+    function updateCanvasShadows() {
+      if (!shadowProps.shadowMapEnabled) {
+        return false;
+      }
+      const presetByType = {
+        basic: 'basic', // THREE.BasicShadowMap
+        pcf: 'percentage', // THREE.PCFShadowMap
+        pcfsoft: 'soft', // THREE.PCFSoftShadowMap
+      };
+      return presetByType[shadowProps.shadowType] ?? 'soft';
+    },
+    [shadowProps]
   );
 
   // -----   Camera Controls   ----- //
@@ -303,6 +323,7 @@ const View3D: React.FunctionComponent<View3DProps> = function View3D({
       <Canvas
         camera={cameraProps}
         orthographic={orthographic}
+        shadows={shadows}
         // updateDefaultCamera={updateDefaultCamera}
         // @ts-ignore:TS2559 no properties in common with Partial<WebGLRenderer>
         gl={glParameters}
