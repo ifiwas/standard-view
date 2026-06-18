@@ -9,6 +9,8 @@
   - `Canvas, useThree` in `View3D.tsx`
 - 🧹 Added Peer Dependency @react-three/drei
   - `PerspectiveCamera, OrthographicCamera` in `SceneCamera.tsx`
+- 🧹 Updated build files to support types and properly import js files
+- 🧹 Added vite and tsup build support
 
 # 2.0.0
 
